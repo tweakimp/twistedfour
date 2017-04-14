@@ -1,14 +1,13 @@
 // jshint esversion:6
 // jshint browser: true
 // jshint devel: true
-var matrix =
-	Array(7)
+var matrix = Array(7)
 	.fill(null)
 	.map(() => Array(7)
 		.fill(0));
-var fieldtoken = [0, 1, 2];
-var coordinates = false;
-
+var fieldtoken = [0, 1, 2]; // possible states a field can have. 0 for empty, 1 for player 1, 2 for player 2
+var coordinates = false; // switch to true to see the coordinates in the fields
+// we are currently just filling the board with a random distribution of the field tokens
 function randomEntry() {
 	return fieldtoken[Math.floor(Math.random() * 3)];
 }
@@ -24,7 +23,8 @@ function fillMatrix() {
 		}
 }
 fillMatrix();
-
+//convert javascript matrix into html matrix
+//note that we create columns from left to right and rows from bottom to top
 function drawMatrix() {
 	var gameArea = document.getElementsByClassName("gameArea")[0];
 	for (var i = 0; i < 7; i++) {
