@@ -53,3 +53,8 @@ html {
 body {
 	background-size: cover;
 }
+
+.markedField {
+	background: green !important;
+	;
+}

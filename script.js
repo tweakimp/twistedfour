@@ -5,26 +5,55 @@ var matrix = Array(7)
 	.fill(null)
 	.map(() => Array(7)
 		.fill(0));
-var fieldtoken = [0, 1, 2]; // possible states a field can have. 0 for empty, 1 for player 1, 2 for player 2
-var coordinates = false; // switch to true to see the coordinates in the fields
+var fieldtoken = [0, 0, 1, 2]; // possible states a field can have. 0 for empty, 1 for player 1, 2 for player 2
+var entries = "randomized"; // switch to coordinates, randomized, custom
 // we are currently just filling the board with a random distribution of the field tokens
 function randomEntry() {
-	return fieldtoken[Math.floor(Math.random() * 3)];
+	return fieldtoken[Math.floor(Math.random() * fieldtoken.length)];
+}
+var customMatrix = [
+	[1, 0, 0, 0, 0, 0, 0],
+	[0, 1, 0, 0, 1, 0, 0],
+	[1, 0, 1, 0, 0, 1, 0],
+	[0, 1, 0, 0, 0, 0, 0],
+	[0, 1, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0],
+	[0, 1, 0, 0, 0, 0, 0],
+];
+
+function applyCustom() {
+	for (var i = 6; i > -1; i--) {
+		for (var j = 6; j > -1; j--) {
+			matrix[i][j] = customMatrix[6 - j][i];
+		}
+	}
 }
 
 function fillMatrix() {
-	for (var i = 6; i > -1; i--)
+	for (var i = 6; i > -1; i--) {
 		for (var j = 6; j > -1; j--) {
-			if (coordinates) {
-				matrix[i][j] = "column" + i + "<br>row" + j;
-			} else {
-				matrix[i][j] = randomEntry();
+			switch (entries) {
+				case "coordinates":
+					matrix[i][j] = "column" + i + "<br>row" + j;
+					break;
+				case "randomized":
+					matrix[i][j] = randomEntry();
+					break;
+				case "custom":
+					applyCustom();
+					break;
+				default:
+					matrix[i][j] = randomEntry();
+					break;
 			}
 		}
+	}
 }
 fillMatrix();
 //convert javascript matrix into html matrix
 //note that we create columns from left to right and rows from bottom to top
+applyGravity();
+
 function drawMatrix() {
 	var gameArea = document.getElementsByClassName("gameArea")[0];
 	for (var i = 0; i < 7; i++) {
@@ -84,10 +113,15 @@ function checkRows() {
 		var currentCount = 1;
 		var currentToken = matrix[0][j];
 		for (var i = 1; i < 7; i++) {
-			if (currentToken === matrix[i][j]) {
+			if (currentToken === matrix[i][j] && currentToken !== 0) {
 				currentCount++;
 				if (currentCount === 4) {
 					winRow = true;
+					for (var markSteps = 0; markSteps < 4; markSteps++) {
+						var markColumn = document.getElementsByClassName("column")[i - markSteps];
+						var markFields = markColumn.getElementsByClassName("field")[6 - j];
+						markFields.className += " markedField";
+					}
 					break;
 				}
 			} else {
@@ -104,10 +138,15 @@ function checkColumns() {
 		var currentCount = 1;
 		var currentToken = matrix[i][0];
 		for (var j = 1; j < 7; j++) {
-			if (currentToken === matrix[i][j]) {
+			if (currentToken === matrix[i][j] && currentToken !== 0) {
 				currentCount++;
 				if (currentCount === 4) {
 					winColumn = true;
+					for (var markSteps = 0; markSteps < 4; markSteps++) {
+						var markColumn = document.getElementsByClassName("column")[i];
+						var markFields = markColumn.getElementsByClassName("field")[6 - (j - markSteps)];
+						markFields.className += " markedField";
+					}
 					break;
 				}
 			} else {
@@ -129,18 +168,26 @@ function checkDiagonals() {
 }
 
 function checkBLTRdiagonals() {
-	for (var j = 0; j < 5; j++) {
-		for (var i = 0; i < 5; i++) {
+	for (var j = 0; j < 4; j++) {
+		for (var i = 0; i < 4; i++) {
 			var currentCount = 1;
 			var currentToken = matrix[i][j];
-			for (var step = 0; step < 4; step++) {
-				if (currentToken === matrix[i + step][j + step]) {
+			for (var step = 1; step < 4; step++) {
+				if (currentToken === matrix[i + step][j + step] && currentToken !== 0) {
 					currentCount++;
 				} else {
 					break;
 				}
 				if (currentCount === 4) {
 					winDiagonal = true;
+					//mark winning fields
+					//document.getElementsByClassName("column")[i].getElementsByClassName("field")[6 - j].className += " markedField";
+					for (var markSteps = 0; markSteps < 4; markSteps++) {
+						var markColumn = document.getElementsByClassName("column")[i + markSteps];
+						var markFields = markColumn.getElementsByClassName("field")[6 - (j + markSteps)];
+						markFields.className += " markedField";
+					}
+					break;
 				}
 			}
 		}
@@ -148,20 +195,46 @@ function checkBLTRdiagonals() {
 }
 
 function checkTLBRdiagonals() {
-	for (var j = 0; j < 5; j++) {
-		for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < 4; i++) {
+		for (var j = 6; j > 3; j--) {
 			var currentCount = 1;
 			var currentToken = matrix[i][j];
-			for (var step = 0; step < 4; step++) {
-				if (currentToken === matrix[i + step][j + step]) {
+			for (var step = 1; step < 4; step++) {
+				if (currentToken === matrix[i + step][j - step] && currentToken !== 0) {
 					currentCount++;
 				} else {
 					break;
 				}
 				if (currentCount === 4) {
 					winDiagonal = true;
+					//mark winning fields
+					//document.getElementsByClassName("column")[i].getElementsByClassName("field")[6 - j].className += " markedField";
+					for (var markSteps = 0; markSteps < 4; markSteps++) {
+						var markColumn = document.getElementsByClassName("column")[i + markSteps];
+						var markFields = markColumn.getElementsByClassName("field")[6 - (j - markSteps)];
+						markFields.className += " markedField";
+					}
+					break;
 				}
 			}
+		}
+	}
+}
+
+function applyGravity() {
+	for (var i = 0; i < 7; i++) {
+		var zeroes = [];
+		// find zeroes and write their index to array
+		for (var j = 0; j < 7; j++) {
+			if (matrix[i][j] === 0) {
+				zeroes.push(j);
+			}
+		}
+		// splice zeroes from columns and push them to the end
+		for (var z = 0; z < zeroes.length; z++) {
+			//zeroes[z] needs -z so the focus stays on the right array item. saved indices need to be adjusted beucase we splice while reading them.
+			matrix[i].splice(zeroes[z] - z, 1);
+			matrix[i].push(0);
 		}
 	}
 }
