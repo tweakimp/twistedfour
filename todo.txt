@@ -1,0 +1,19 @@
+====
+TODO
+====
+
+GAMEPLAY
+make moves, start at all zeroes
+
+UI
+color fields in player color
+show whose move it is
+
+KI
+functions that help the AI
+getGameState >> return matrix
+getLastMove >>	return column (0-6) or turn left or turn right
+
+====
+DONE
+====
