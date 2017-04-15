@@ -1,27 +1,38 @@
 // jshint esversion:6
 // jshint browser: true
 // jshint devel: true
+// start with 7x7 matrix
 var matrix = Array(7)
 	.fill(null)
 	.map(() => Array(7)
 		.fill(0));
-var fieldtoken = [0, 0, 1, 2]; // possible states a field can have. 0 for empty, 1 for player 1, 2 for player 2
-var entries = "randomized"; // switch to coordinates, randomized, custom
+
+// possible states a field can have. 0 for empty, 1 for player 1, 2 for player 2
+var fieldtoken = [0, 1, 2];
+
+// switch to "coordinates", "randomized", "custom". coordinates makes the the fields show their coordinates; randomized creates a random 0,1,2 distribution; with custom you can setup a custom grid via customMatrix
+var entries = "randomized";
+
+// gravity = true makes zeroes get moved up in a column 
+var gravity = true;
+
 // we are currently just filling the board with a random distribution of the field tokens
 function randomEntry() {
 	return fieldtoken[Math.floor(Math.random() * fieldtoken.length)];
 }
-var customMatrix = [
-	[1, 0, 0, 0, 0, 0, 0],
-	[0, 1, 0, 0, 1, 0, 0],
-	[1, 0, 1, 0, 0, 1, 0],
-	[0, 1, 0, 0, 0, 0, 0],
-	[0, 1, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0],
-	[0, 1, 0, 0, 0, 0, 0],
-];
 
+// applies the custom matrix on the matrix the game uses
 function applyCustom() {
+	// the custom matrix is applied in a way so that the columns you see here are also the columns you will see in the browser
+	var customMatrix = [
+		[1, 0, 0, 0, 0, 0, 0],
+		[0, 1, 0, 0, 1, 0, 0],
+		[1, 0, 1, 0, 0, 1, 0],
+		[0, 1, 0, 0, 0, 0, 0],
+		[0, 1, 0, 0, 0, 0, 1],
+		[1, 0, 0, 0, 0, 0, 0],
+		[0, 1, 0, 0, 0, 0, 0],
+	];
 	for (var i = 6; i > -1; i--) {
 		for (var j = 6; j > -1; j--) {
 			matrix[i][j] = customMatrix[6 - j][i];
@@ -29,6 +40,7 @@ function applyCustom() {
 	}
 }
 
+// fill the matrix with what you chose at var entries
 function fillMatrix() {
 	for (var i = 6; i > -1; i--) {
 		for (var j = 6; j > -1; j--) {
@@ -50,10 +62,31 @@ function fillMatrix() {
 	}
 }
 fillMatrix();
-//convert javascript matrix into html matrix
-//note that we create columns from left to right and rows from bottom to top
-applyGravity();
 
+function applyGravity() {
+	for (var i = 0; i < 7; i++) {
+		var zeroes = [];
+		// find zeroes and write their index to array
+		for (var j = 0; j < 7; j++) {
+			if (matrix[i][j] === 0) {
+				zeroes.push(j);
+			}
+		}
+		// splice zeroes from columns and push them to the end
+		for (var z = 0; z < zeroes.length; z++) {
+			//zeroes[z] needs -z so the focus stays on the right array item. saved indices need to be adjusted beucase we splice while reading them.
+			matrix[i].splice(zeroes[z] - z, 1);
+			matrix[i].push(0);
+		}
+	}
+}
+
+// apply gravity if var gravity = true
+if (gravity) {
+	applyGravity();
+}
+
+// convert javascript matrix into html matrix. note that we create columns from left to right and rows from bottom to top
 function drawMatrix() {
 	var gameArea = document.getElementsByClassName("gameArea")[0];
 	for (var i = 0; i < 7; i++) {
@@ -74,38 +107,11 @@ function drawMatrix() {
 	}
 }
 drawMatrix();
+
+// check for winconditions. devide them up into three to make it easier
 var winRow = false;
 var winColumn = false;
 var winDiagonal = false;
-
-function checkForWin() {
-	checkRows();
-	checkColumns();
-	checkDiagonals();
-	if (winRow || winColumn || winDiagonal) {
-		if (winRow && !winColumn && !winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW";
-		}
-		if (!winRow && winColumn && !winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY COLUMN";
-		}
-		if (!winRow && !winColumn && winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY DIAGONAL";
-		}
-		if (winRow && winColumn && !winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW AND COLUMN";
-		}
-		if (winRow && !winColumn && winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW AND DIAGONAL";
-		}
-		if (!winRow && winColumn && winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY COLUMN AND DIAGONAL";
-		}
-		if (winRow && winColumn && winDiagonal) {
-			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW, COLUMN AND DIAGONAL";
-		}
-	}
-}
 
 function checkRows() {
 	//four in a row
@@ -155,16 +161,6 @@ function checkColumns() {
 			}
 		}
 	}
-}
-
-function checkDiagonals() {
-	//four in a diagonal
-	//bottom left to top right diagonals
-	//idea: search from start points for these diagonals. start points are the fields in the bottom left 4*4 square
-	checkBLTRdiagonals();
-	//top left to bottom right diagonals
-	//idea: search from start points for these diagonals. start points are the fields in the top left 4*4 square
-	checkTLBRdiagonals();
 }
 
 function checkBLTRdiagonals() {
@@ -221,21 +217,45 @@ function checkTLBRdiagonals() {
 	}
 }
 
-function applyGravity() {
-	for (var i = 0; i < 7; i++) {
-		var zeroes = [];
-		// find zeroes and write their index to array
-		for (var j = 0; j < 7; j++) {
-			if (matrix[i][j] === 0) {
-				zeroes.push(j);
-			}
+function checkDiagonals() {
+	//four in a diagonal
+	//bottom left to top right diagonals
+	//idea: search from start points for these diagonals. start points are the fields in the bottom left 4*4 square
+	checkBLTRdiagonals();
+	//top left to bottom right diagonals
+	//idea: search from start points for these diagonals. start points are the fields in the top left 4*4 square
+	checkTLBRdiagonals();
+}
+
+function checkForWin() {
+	checkRows();
+	checkColumns();
+	checkDiagonals();
+
+	// the following if statement is super ugly and should not be seen by anyone who is not trying to fix it
+	if (winRow || winColumn || winDiagonal) {
+		if (winRow && !winColumn && !winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW";
 		}
-		// splice zeroes from columns and push them to the end
-		for (var z = 0; z < zeroes.length; z++) {
-			//zeroes[z] needs -z so the focus stays on the right array item. saved indices need to be adjusted beucase we splice while reading them.
-			matrix[i].splice(zeroes[z] - z, 1);
-			matrix[i].push(0);
+		if (!winRow && winColumn && !winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY COLUMN";
+		}
+		if (!winRow && !winColumn && winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY DIAGONAL";
+		}
+		if (winRow && winColumn && !winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW AND COLUMN";
+		}
+		if (winRow && !winColumn && winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW AND DIAGONAL";
+		}
+		if (!winRow && winColumn && winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY COLUMN AND DIAGONAL";
+		}
+		if (winRow && winColumn && winDiagonal) {
+			document.getElementsByClassName("statusArea")[0].innerHTML = "WIN BY ROW, COLUMN AND DIAGONAL";
 		}
 	}
 }
+
 checkForWin();
