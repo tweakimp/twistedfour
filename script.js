@@ -65,8 +65,9 @@ fillMatrix();
 
 function applyGravity() {
 	for (var i = 0; i < 7; i++) {
-		var zeroes = [];
 		// find zeroes and write their index to array
+		var zeroes = [];
+
 		for (var j = 0; j < 7; j++) {
 			if (matrix[i][j] === 0) {
 				zeroes.push(j);
