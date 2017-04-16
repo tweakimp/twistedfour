@@ -1,4 +1,4 @@
-##to do
+##to do##
 
 **GAMEPLAY**  
 - make moves, start at all zeroes
@@ -7,7 +7,7 @@
 
 
 **GAME RULES**  
-what happens when both players connect 4 after a twist?
+ - what happens when both players connect 4 after a twist?
 
 **UI**
 - color fields in player color
@@ -25,6 +25,6 @@ what happens when both players connect 4 after a twist?
 - python formula: (ia_fours * 100000 + ia_threes * 100 + ia_twos * 10) - (human_threes * 100 + human_twos * 10) + depth
 
 **CODE**
-class objects
-split up file with "import"
-recognize column amd row wins with more than four connected
+- class objects
+- split up file with "import"
+- recognize column amd row wins with more than four connected
