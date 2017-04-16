@@ -30,4 +30,11 @@
 - split up file with "import"  
 - recognize column amd row wins with more than four connected  
 
+**IMPROVEMENTS**  
+- give every field a unique id
+- get rid of += className
+
+**BUGS**
+
+
 ### ~~done~~
