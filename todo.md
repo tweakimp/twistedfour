@@ -22,12 +22,12 @@
 - heuristic used to evaluate a game state is:
 
 
->python
->```python(ia_fours * 100000 + ia_threes * 100 + ia_twos * 10) - (human_threes * 100 + human_twos * 10) + depth```
+>*python*  
+>```(ia_fours * 100000 + ia_threes * 100 + ia_twos * 10) - (human_threes * 100 + human_twos * 10) + depth```
 
-**CODE**
-- class objects
-- split up file with "import"
-- recognize column amd row wins with more than four connected
+**CODE**  
+- class objects  
+- split up file with "import"  
+- recognize column amd row wins with more than four connected  
 
 ### ~~done~~
