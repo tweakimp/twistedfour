@@ -25,8 +25,9 @@ count of ia's four-in-row * 1000 + count of ia's three-in-row * 100 + count of i
 python formula: (ia_fours * 100000 + ia_threes * 100 + ia_twos * 10) - (human_threes * 100 + human_twos * 10) + depth
 
 CODE
-CLASS objects
+class objects
 split up file with "import"
+recognize column amd row wins with more than four connected
 
 
 

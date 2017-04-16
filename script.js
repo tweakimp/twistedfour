@@ -11,7 +11,7 @@ var matrix = Array(7)
 var fieldtoken = [0, 1, 2];
 
 // switch to "coordinates", "randomized", "custom". coordinates makes the the fields show their coordinates; randomized creates a random 0,1,2 distribution; with custom you can setup a custom grid via customMatrix
-var entries = "randomized";
+var entries = "custom";
 
 // gravity = true makes zeroes get moved up in a column 
 var gravity = true;
@@ -25,14 +25,15 @@ function randomEntry() {
 function applyCustom() {
 	// the custom matrix is applied in a way so that the columns you see here are also the columns you will see in the browser
 	var customMatrix = [
-		[1, 0, 0, 0, 0, 0, 0],
-		[0, 1, 0, 0, 1, 0, 0],
-		[1, 0, 1, 0, 0, 1, 0],
-		[0, 1, 0, 0, 0, 0, 0],
-		[0, 1, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0],
-		[0, 1, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[1, 0, 0, 0, 0, 2, 0],
+		[1, 1, 0, 0, 2, 1, 0],
+		[2, 1, 1, 2, 1, 2, 0],
+		[2, 2, 2, 1, 1, 2, 0],
+		[1, 2, 2, 1, 1, 1, 0],
 	];
+
 	for (var i = 6; i > -1; i--) {
 		for (var j = 6; j > -1; j--) {
 			matrix[i][j] = customMatrix[6 - j][i];
@@ -124,12 +125,11 @@ function checkRows() {
 				currentCount++;
 				if (currentCount === 4) {
 					winRow = true;
-					for (var markSteps = 0; markSteps < 4; markSteps++) {
+					for (var markSteps = 0; markSteps < currentCount; markSteps++) {
 						var markColumn = document.getElementsByClassName("column")[i - markSteps];
 						var markFields = markColumn.getElementsByClassName("field")[6 - j];
 						markFields.className += " markedField";
 					}
-					break;
 				}
 			} else {
 				currentToken = matrix[i][j];
