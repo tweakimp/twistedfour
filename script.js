@@ -1,7 +1,6 @@
 // jshint esversion:6
 // jshint browser: true
 // jshint devel: true
-
 // start with 7x7 matrix
 const matrix = Array(7)
 	.fill(null)
@@ -93,8 +92,9 @@ if (gravity) {
 function drawMatrix() {
 	const gameArea = document.getElementsByClassName("gameArea")[0];
 	// create columns
-	const column = document.createElement("div");
+
 	for (let i = 0; i < 7; i++) {
+		let column = document.createElement("div");
 		column.className = "column";
 		gameArea.appendChild(column);
 		for (let j = 6; j > -1; j--) {
