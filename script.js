@@ -92,9 +92,9 @@ if (gravity) {
 // convert javascript matrix into html matrix. note that we create columns from left to right and rows from bottom to top
 function drawMatrix() {
 	const gameArea = document.getElementsByClassName("gameArea")[0];
+	// create columns
+	const column = document.createElement("div");
 	for (let i = 0; i < 7; i++) {
-		// create columns
-		let column = document.createElement("div");
 		column.className = "column";
 		gameArea.appendChild(column);
 		for (let j = 6; j > -1; j--) {
