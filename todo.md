@@ -1,5 +1,4 @@
-## to do
-
+### to do
 **GAMEPLAY**  
 - make moves, start at all zeroes
 - twist functions
@@ -32,4 +31,4 @@ python formula:
 - split up file with "import"
 - recognize column amd row wins with more than four connected
 
-##~~done~~
+### ~~done~~
