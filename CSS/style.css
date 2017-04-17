@@ -15,6 +15,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #0b4455;
 }
 
 .column {
@@ -22,11 +23,16 @@
 }
 
 .field {
-	width: 50px;
-	height: 50px;
-	background: darkred;
+	width: 80px;
+	height: 80px;
 	padding: 5px;
-	margin: 1px;
+	background-color: #0b4455;
+	-webkit-box-shadow: inset 0px 0px 33px 0px rgba(0, 0, 0, 0.3);
+	/* WebKit */
+	-moz-box-shadow: inset 0px 0px 33px 0px rgba(0, 0, 0, 0.3);
+	/* Firefox */
+	box-shadow: inset 0px 0px 33px 0px rgba(0, 0, 0, 0.3);
+	/* Standard */
 }
 
 .textfield {
@@ -58,5 +64,13 @@ body {
 }
 
 .markedField {
-	background: green !important;
+	/*background: green !important;*/
+}
+
+.player1 {
+	background-color: #ef464f;
+}
+
+.player2 {
+	background-color: #1bd728;
 }

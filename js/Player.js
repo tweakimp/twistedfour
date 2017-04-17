@@ -2,18 +2,18 @@
 // jshint browser: true
 // jshint devel: true
 
-function Player(name, identitiy) {
+function Player(name, identity) {
 	this.name = name;
-	this.identitiy = identitiy;
+	this.identity = identity;
 
-	this.getMove() {
-		if (identitiy == "human") {
-			this.x = mousexcoord;
-			this.y = mouseycoord;
+	this.getMove = function () {
+		if (this.identity == "human") {
+			this.x = 0;
+			this.y = 0;
 			return; // return item from legalmoves
 		}
 
-		if (identitiy == "ai") {
+		if (this.identity == "ai") {
 			let legal = twisted.getLegalMoves();
 			let move = legal[Math.floor(Math.random() * legal.length)];
 

@@ -14,20 +14,4 @@ switch to "coordinates", "randomized", "custom", "start"
 var twisted = new Game("ai", "ai", 60);
 twisted.start();
 
-// fill the matrix with what you chose at let entries
-twisted.board.fillMatrix();
-
-// apply gravity if let gravity = true
-if (board.gravity) {
-	board.applyGravity();
-}
-
-// convert javascript matrix into html matrix. note that we create columns from left to right and rows from bottom to top
-
-board.drawMatrix();
-
 // four in a row
-let winner = board.getWinner();
-if (winner !== 0) {
-	document.getElementsByClassName("statusArea")[0].innerHTML = `Player ${winner} wins!`;
-}

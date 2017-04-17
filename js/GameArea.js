@@ -3,6 +3,7 @@
 // jshint devel: true
 
 function GameArea(mode, gravity) {
+	var gameArea = document.getElementsByClassName("gameArea")[0];
 	this.matrix = Array(7)
 		.fill(null)
 		.map(() => Array(7)
@@ -16,9 +17,13 @@ function GameArea(mode, gravity) {
 	this.getMatrix = function () {
 		return this.matrix;
 	};
-
+	this.deleteMatrix = function () {
+		//var myNode = document.getElementsByClassName("gameArea");
+		while (gameArea.firstChild) {
+			gameArea.removeChild(gameArea.firstChild);
+		}
+	};
 	this.drawMatrix = function () {
-		const gameArea = document.getElementsByClassName("gameArea")[0];
 
 		for (let i = 0; i < 7; i++) {
 
@@ -31,7 +36,13 @@ function GameArea(mode, gravity) {
 				field.className = "field";
 				let textfield = document.createElement("div");
 				textfield.className = "textfield";
-				textfield.innerHTML = this.matrix[i][j];
+				/*textfield.innerHTML = this.matrix[i][j];*/
+				if (this.matrix[i][j] === 1) {
+					field.className += " player1";
+				}
+				if (this.matrix[i][j] === 2) {
+					field.className += " player2";
+				}
 				column.appendChild(field);
 				field.appendChild(textfield);
 			}
@@ -266,7 +277,8 @@ function GameArea(mode, gravity) {
 	this.makeMove = function (move, player) {
 
 		// break if move is not allowed
-		if (!(twisted.getLegalMoves.includes(move))) {
+		if (!(twisted.getLegalMoves()
+				.includes(move))) {
 			throw "Move is not allowed, chosen column is full.";
 
 		} else if (move == "l") {
