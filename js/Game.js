@@ -4,15 +4,26 @@
 
 function Game(player1, player2, timelimit) {
 	this.timelimit = timelimit; // time per move
-	this.player1 =
-		if (player1 === "ai") { // toggle ai and human
+	this.player1 = function () {
+		// toggle ai and human
+		if (player1 === "ai") {
 			return new SuperAI();
 		}
-	this.player2 =
+
 		if (player2 !== "ai") { // toggle ai and human
 			return new Human();
 		}
+	};
+	this.player2 = function () {
+		// toggle ai and human
+		if (player1 === "ai") {
+			return new SuperAI();
+		}
 
+		if (player2 !== "ai") { // toggle ai and human
+			return new Human();
+		}
+	};
 	this.turnnumber = 0; // turnnumber > 49 -> draw
 	this.whoseturn;
 
@@ -42,6 +53,7 @@ function Game(player1, player2, timelimit) {
 
 		// wessen turn
 		// player X getMove
+		this.score = gameScore();
 
 	}
 };
