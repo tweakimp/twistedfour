@@ -1,4 +1,4 @@
-## to do
+# to do
 **GAMEPLAY**  
 - mouse over columns
 
@@ -36,7 +36,7 @@
 **BUGS**
 
 
-## done
+# done
 - get rid of += className
 - color fields in player color
 - make moves, start at all zeroes
