@@ -64,7 +64,8 @@ body {
 }
 
 .markedField {
-	/*background: green !important;*/
+	border: #dee529;
+	border-width: 3px;
 }
 
 .player1 {

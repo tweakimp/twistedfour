@@ -5,13 +5,14 @@
 function Game(player1, player2, timelimit) {
 
 	this.timelimit = timelimit; // time per move
+
 	this.player1 = new Player("Bert", "ai");
 	this.player2 = new Player("Ernie", "ai");
-	this.whoseturn = 1;
+
 	this.randomturn = function () {
 		return Math.floor(Math.random() * 2) + 1;
 	};
-	this.turnnumber = 0; // turnnumber > 49 -> draw
+	this.turnnumber = 1; // turnnumber > 49 -> draw
 	this.board = new GameArea("start", "true");
 
 	this.legalmoves = ["l", "r", 0, 1, 2, 3, 4, 5, 6]; // 1-7 spalten,  0 links drehen, 8 rechts drehen
@@ -47,37 +48,40 @@ function Game(player1, player2, timelimit) {
 		                if (this.whoseturn === 1) {} else {}
 		            }
 		        }, 1000);
-				*/
-		var move;
-		if (this.whoseturn === 1) {
+		*/
+		let move;
+		let player;
+		if (this.turnnumber % 2 === 1) {
 			move = this.player1.getMove();
-		} else if (this.whoseturn === 2) {
-			move = this.player2.getMove();
+			player = 1;
 		} else {
-			//throw this.whoseturn;
+			move = this.player2.getMove();
+			player = 2
 		}
 
-		this.board.makeMove(move, this.randomturn());
+		this.history.push(move);
+		this.board.makeMove(move, player);
+
+		// check HERE for wins
 
 		this.board.deleteMatrix();
 		this.board.drawMatrix();
-		//this.nextTurn();
-		// listen for mouse click > if click on m happens, make move
-		// redraw board
-		// check for wins
-		// nun next turn
-		//clearInterval(timer);
+
+		// clearInterval(timer);
+
 		this.turnnumber++;
-		if (this.turnnumber === 45) {
+		if (this.turnnumber === 20) {
 			throw "mach ma schluss";
 		}
-		if (this.turnnumber === 22) {
-			console.log(this.randomturn());
-		}
+		sleep(500)
+			.then(() => {
+				this.nextTurn();
+			});
 
-		setTimeout(this.nextTurn(), 2000);
-
-	};
-
+		// setTimeout(this.nextTurn(), 1000);
+	}
+};
+// sleep time expects milliseconds
+function sleep(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }
-//
