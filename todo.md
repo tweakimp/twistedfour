@@ -1,6 +1,6 @@
 ### to do
-**GAMEPLAY**  
-
+**GAMEPLAY**  
+- mouse over columns
 
 **GAME RULES**  
 - what happens when both players connect 4 after a twist?
@@ -19,8 +19,10 @@
 - rate game state >> return a number between 1(player 1 wins 100%) and 2(player 2 wins 100%)  
 - heuristic used to evaluate a game state is:
 
->*python*  
+
+
 ```
+Python
 (ia_fours * 100000 + ia_threes * 100 + ia_twos * 10) - (human_threes * 100 + human_twos * 10) + depth
 ```
 
