@@ -1,8 +1,5 @@
 ### to do
 **GAMEPLAY**  
-- make moves, start at all zeroes
-- twist functions
-- write a history "player 1, player 2"-array of what moves have been made so far
 
 
 **GAME RULES**  
@@ -35,4 +32,8 @@
 
 
 ### ~~done~~
-- ~~get rid of += className~~
+- get rid of += className
+
+- make moves, start at all zeroes
+- twist functions
+- write a history "player 1, player 2"-array of what moves have been made so far
