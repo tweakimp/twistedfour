@@ -5,10 +5,10 @@
 **GAME RULES**  
 - what happens when both players connect 4 after a twist?
 
-**UI**  
-- color fields in player color  
-- show whose move it is  
-- show how much time it is  
+**UI**
+
+- show whose move it is 
+- show how much time it is  
 - add "start new game" button with time option  
  
 **KI**  
@@ -33,7 +33,7 @@
 
 ### ~~done~~
 - get rid of += className
-
+- color fields in player color
 - make moves, start at all zeroes
 - twist functions
 - write a history "player 1, player 2"-array of what moves have been made so far
