@@ -11,4 +11,4 @@ We are currently coding...
 [@mariansauter](https://github.com/mariansauter)
 [@tweakimp](https://github.com/tweakimp)
 
-![alt](https://gfycat.com/BitterCarefreeErin) 
+![alt](http://i.imgur.com/4dTaXAf.jpg) 
