@@ -10,10 +10,12 @@ switch to "coordinates", "randomized", "custom", "start"
 - custom you can setup a custom grid via customMatrix
 - start to fill matrix with zeroes
 */
-let board = new GameArea("random", "true");
+
+var twisted = new Game("ai", "ai", 60);
+twisted.start();
 
 // fill the matrix with what you chose at let entries
-board.fillMatrix();
+twisted.board.fillMatrix();
 
 // apply gravity if let gravity = true
 if (board.gravity) {

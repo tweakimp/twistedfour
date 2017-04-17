@@ -13,6 +13,10 @@ function GameArea(mode, gravity) {
 	this.mode = mode;
 	this.winner = 0;
 
+	this.getMatrix = function () {
+		return this.matrix;
+	};
+
 	this.drawMatrix = function () {
 		const gameArea = document.getElementsByClassName("gameArea")[0];
 
@@ -257,6 +261,73 @@ function GameArea(mode, gravity) {
 		return this.winner;
 	};
 
+	// n = "l" for left turn, n = [0,...,6] for the 7 columns,n = "r" for right turn
+	// p is player number
+	this.makeMove = function (move, player) {
+
+		// break if move is not allowed
+		if (!(twisted.getLegalMoves.includes(move))) {
+			throw "Move is not allowed, chosen column is full.";
+
+		} else if (move == "l") {
+
+			this.matrix = rotateLeft(this.matrix);
+			this.applyGravity();
+
+		} else if (move == "r") {
+
+			this.matrix = rotateRight(this.matrix);
+			this.applyGravity();
+
+		} else {
+
+			// put token into column
+			let targetField = this.matrix[move].indexOf(0);
+			this.matrix[move].splice(targetField, 1, player);
+			this.applyGravity();
+
+		}
+		return this.matrix;
+	};
 }
 
-// Game over
+// HELP FUNCTION. TO BE INTEGRATED
+// help functions
+function rotateRight(matrix) {
+	matrix = transpose(matrix);
+	matrix.map(function (array) {
+		array.reverse();
+	});
+	return matrix;
+}
+
+function rotateLeft(matrix) {
+	let result = createEmptyMatrix(matrix.length);
+	matrix = transpose(matrix);
+	let counter = 0;
+	for (let i = matrix.length - 1; i >= 0; i--) {
+		result[counter] = matrix[i];
+		counter++;
+	}
+	return result;
+}
+
+function transpose(matrix) {
+	let len = matrix.length;
+	let result = createEmptyMatrix(len);
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			let temp = matrix[i][j];
+			result[j][i] = temp;
+		}
+	}
+	return result;
+}
+// Create empty matrix
+function createEmptyMatrix(len) {
+	let result = [];
+	for (let i = 0; i < len; i++) {
+		result.push([]);
+	}
+	return result;
+}

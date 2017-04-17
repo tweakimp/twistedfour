@@ -1,3 +1,7 @@
+// jshint esversion: 6
+// jshint browser: true
+// jshint devel: true
+
 function Player(name, identitiy) {
 	this.name = name;
 	this.identitiy = identitiy;
@@ -10,8 +14,11 @@ function Player(name, identitiy) {
 		}
 
 		if (identitiy == "ai") {
-			doAIstuff();
-			return; // return item from legalmoves
+			let legal = twisted.getLegalMoves();
+			let move = legal[Math.floor(Math.random() * legal.length)];
+
+			return move; // return item from legalmoves
 		}
 
 	};
+}

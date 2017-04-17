@@ -1,44 +1,4 @@
 // jshint esversion: 6
-// jshint browser: true
-// jshint devel: true
-
-// n = "l" for left turn, n = [0,...,6] for the 7 columns,n = "r" for right turn
-// p is player number
-function makeMove(matrix, n, p) {
-	// transform matrix from js view to html view
-	matrix = rotateRight(matrix);
-	// check possible moves first
-	let possibleMoves = ["l", "r"]; //twisting is always possible
-	// check if column has a free spot and note column in possibleMoves in that case
-	for (let i = 6; i > -1; i--) {
-		if (matrix[i].includes(0)) {
-			possibleMoves.unshift(i); //
-		}
-	}
-	// break if move is not allowed. maybe learn how to throw error here?
-	if (!(possibleMoves.includes(n))) {
-		throw "Move is not allowed, chosen column is full.";
-	} else if (n !== "l" && n !== "r") {
-		// do the actual move
-		let targetField = matrix[n].indexOf(0);
-		matrix[n].splice(targetField, 1, p);
-
-		return matrix;
-	} else if (n == "l") {
-		// do left turn
-		matrix = rotateLeft(matrix);
-		//apply gravity
-
-		// GRAVITY MISSING
-	} else if (n == "r") {
-		// do right turn
-		matrix = rotateRight(matrix);
-		//apply gravity;
-		// GRAVITY MISSING
-	}
-	return matrix;
-
-}
 
 // help functions
 function rotateRight(matrix) {
@@ -78,4 +38,57 @@ function createEmptyMatrix(len) {
 		result.push([]);
 	}
 	return result;
+}
+
+function applyGravity(matrix) {
+
+	for (let i = 0; i < 7; i++) {
+		// find zeroes and write their index to array
+		let zeroes = [];
+
+		for (let j = 0; j < 7; j++) {
+			if (matrix[i][j] === 0) {
+				zeroes.push(j);
+			}
+		}
+		// splice zeroes from columns and push them to the end
+		for (let z = 0; z < zeroes.length; z++) {
+			// zeroes[z] needs -z so the focus stays on the right array item. saved indices need to be adjusted beucase we splice while reading them.
+			matrix[i].splice(zeroes[z] - z, 1);
+			matrix[i].push(0);
+		}
+	}
+}
+
+const customSetup = [
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 1, 0, 0, 0],
+	[1, 2, 2, 2, 2, 2, 2],
+];
+const start = [
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0],
+];
+// transform matrix from js view to html view
+let customMatrix = [];
+
+function transform() {
+
+	customMatrix = rotateRight(customSetup);
+}
+transform();
+
+let sequence = [1, 1, 1, 4, 2, 5, 3, 2, 0];
+
+function playSequence() {
+	let length = sequence.length;
 }

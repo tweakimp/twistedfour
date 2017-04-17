@@ -3,59 +3,64 @@
 // jshint devel: true
 
 function Game(player1, player2, timelimit) {
+
 	this.timelimit = timelimit; // time per move
 	this.player1 = function () {
-		// toggle ai and human
-		if (player1 === "ai") {
-			return new SuperAI();
-		}
 
-		if (player2 !== "ai") { // toggle ai and human
-			return new Human();
-		}
+		return new Player();
 	};
+
 	this.player2 = function () {
-		// toggle ai and human
-		if (player1 === "ai") {
-			return new SuperAI();
-		}
 
-		if (player2 !== "ai") { // toggle ai and human
-			return new Human();
-		}
+		return new Player();
 	};
+
 	this.turnnumber = 0; // turnnumber > 49 -> draw
-	this.whoseturn;
+	this.whoseturn = 1;
+	this.board = new GameArea("start", "true");
 
-	this.legalmoves = []; // 1-7 spalten,  0 links drehen, 8 rechts drehen
+	this.legalmoves = ["l", "r", 0, 1, 2, 3, 4, 5, 6]; // 1-7 spalten,  0 links drehen, 8 rechts drehen
 
-	this.eventListener; // gucken wer wo hin klickt mouse over spalte, bei click zug in der spalte
-	this.countdown = function (timelimit) {
-		this.timelimit = timelimit;
-		timelimit--;
-		if
-	}
-	this.history: [
-		[1, 2],
-		[1, 2],
-		[2, 3],
-		[2, 1],
-	]
+	this.eventListener = 0; // gucken wer wo hin klickt mouse over spalte, bei click zug in der spalte
+	this.time = 0;
+	this.countdown = function () {
+		time--;
+		// time limit reached, lose game
+		if (this.time === 0) {
+			if (this.whoseturn === 1) {} else {}
+		}
+
+	};
+	this.history = [];
+
+	this.getLegalMoves = function () {
+		return this.legalmoves;
+	};
+
 	this.start = function () {
+		this.whoseturn = Math.ceil((Math.random() * 2));
 
-		// wuerfel who anfaengt
-		// run nextturn
-
+		this.nextTurn();
 	};
 
 	this.nextTurn = function () {
-		setInterval(countdown(), 1000);
 
-		// wessen turn
-		// player X getMove
-		this.score = gameScore();
+		this.time = timelimit;
+		let timer = setInterval(this.countdown(), 1000);
 
-	}
-};
+		if (whoseturn == 1) {
+			player1.getMove();
+		} else {
+			player2.getMove();
+		}
+
+		GameArea.makeMove(move, whoseturn);
+
+		// listen for mouse click > if click on m happens, make move
+		// redraw board
+		// check for wins
+		// nun next turn 
+
+	};
 
 }

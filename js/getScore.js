@@ -12,7 +12,7 @@ const fieldScore = [
 	[3, 4, 5, 7, 5, 4, 3],
 ];
 
-const customMatrix = [
+var customMatrix = [
 	[0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0],
