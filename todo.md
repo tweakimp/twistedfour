@@ -1,6 +1,6 @@
 # to do
 ### game play
-- mouse over columns
+- []  mouse over columns
 
 ### game rules
 - what happens when both players connect 4 after a twist?
@@ -33,7 +33,7 @@
 
 
 # done
-- get rid of += className
+- [x] get rid of += className
 - color fields in player color
 - make moves, start at all zeroes
 - twist functions
