@@ -10,5 +10,3 @@ We are currently coding...
 ```
 [@mariansauter](https://github.com/mariansauter)
 [@tweakimp](https://github.com/tweakimp)
-
-![alt](http://i.imgur.com/4dTaXAf.jpg) 
