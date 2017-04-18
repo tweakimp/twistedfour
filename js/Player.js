@@ -31,7 +31,7 @@ function Player(id, identity) {
 
                 simulated_Area.makeMove(current_move, this.id);
 
-                var score = gameScore(simulated_Area.getMatrix());
+                var score = gameScore(simulated_Area.getMatrix(), this.id);
                 future_moves.push([score, current_move]);
             }
 
@@ -60,7 +60,7 @@ const fieldScore = [
 ];
 
 // GAME SCORE METHODS
-function gameScore(matrix) {
+function gameScore(matrix, id) {
     //calculate player1
     let player1score = 0;
     for (let i = 0; i < 7; i++) {
@@ -79,5 +79,6 @@ function gameScore(matrix) {
             }
         }
     }
-    return player1score - player2score;
+    if (id === 1) return player1score - player2score;
+    else return player2score - player1score;
 }
