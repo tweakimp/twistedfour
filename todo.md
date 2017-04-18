@@ -34,4 +34,4 @@
 - [x] make moves, start at all zeroes
 - [x] twist functions
 - [x] write a history "player 1, player 2"-array of what moves have been made so far
-- [x]  getLastMove >>	return column (0-6) or turn left or turn right  
+- [x] getLastMove >>	return column (0-6) or turn left or turn right  
