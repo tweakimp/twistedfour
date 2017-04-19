@@ -51,16 +51,6 @@ body {
 	background-color: #1bd728;
 }
 
-.textfield {
-	color: lightyellow;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: inherit;
-	height: inherit;
-}
-
 .statusArea {
 	text-align: center;
 	width: 350px;

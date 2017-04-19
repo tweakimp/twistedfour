@@ -1,4 +1,5 @@
-// jshint esversion: 6, browser: true, devel: true
+/* jshint esversion: 6, browser: true, devel: true */
+/* globals Game*/
 
 /*
 create 7x7 matrix, fill with x, apply gravity?

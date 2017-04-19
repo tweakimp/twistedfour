@@ -38,8 +38,10 @@ function gameScore(matrix) {
 			}
 		}
 	}
-	return let score = player1score - player2score;
+
+	let score = player1score - player2score;
 	console.log(score);
+	return score;
 }
 
 /*

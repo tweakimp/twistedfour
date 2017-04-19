@@ -53,16 +53,23 @@ function GameArea(mode, gravity) {
 			let column = document.createElement("div");
 			column.className = "column";
 			gameArea.appendChild(column);
+			column.id = i;
+
+			/*
+			column.addEventListener("click", function () {
+				alert(`Hello! I am column #${i}`);
+			});
+			*/
+
 			for (let j = 6; j > -1; j--) {
 				// create fields
 				let field = document.createElement("div");
 				field.className = "field";
-				let textfield = document.createElement("div");
-				textfield.className = "textfield";
+				field.id = i + "/" + j;
+
 				// assign css classes to use player color
 				field.className += (this.matrix[i][j] === 1) ? " player1" : (this.matrix[i][j] === 2) ? " player2" : "";
 				column.appendChild(field);
-				field.appendChild(textfield);
 			}
 		}
 	};

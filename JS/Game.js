@@ -5,8 +5,8 @@ function Game(player1, player2, timelimit) {
 
 	this.timelimit = timelimit; // time per move
 	this.board = new GameArea("start", true);
-	this.player1 = new Player(1, "random");
-	this.player2 = new Player(2, "random");
+	this.player1 = new Player(1, "human");
+	this.player2 = new Player(2, "human");
 
 	this.randomturn = function () {
 		let possible = this.getLegalMoves();
@@ -16,7 +16,7 @@ function Game(player1, player2, timelimit) {
 	this.turnnumber = 1;
 
 	this.getLegalMoves = function () {
-		const allMoves = ["l", /* "r",*/ 0, 1, 2, 3, 4, 5, 6];
+		const allMoves = ["l", "r", 0, 1, 2, 3, 4, 5, 6];
 		let moves = allMoves;
 		let matrix = twisted.board.getMatrix();
 		for (let i = 0; i < 7; i++) {
@@ -44,6 +44,7 @@ function Game(player1, player2, timelimit) {
 
 	this.start = function () {
 		twisted.board.fillMatrix();
+		twisted.board.drawMatrix();
 		this.nextTurn();
 	};
 
@@ -76,10 +77,11 @@ function Game(player1, player2, timelimit) {
 		// check HERE for wins
 
 		twisted.board.getWinner();
-
 		this.board.drawMatrix();
-
 		this.turnnumber++;
+		if (this.turnnumber === 15) {
+			throw "rsdfsdfsdf";
+		}
 
 		setTimeout(function () {
 			twisted.nextTurn();

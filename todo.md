@@ -17,17 +17,13 @@
 - [ ]  rate game state >> return a number between 1(player 1 wins 100%) and 2(player 2 wins 100%)  
 - [ ]  heuristic used to evaluate a game state is:
 
-		
 		(aiFours * 100000 + aiThrees * 100 + aiTwos * 10)
-		- (humanThrees * 100 + humanTwos * 10) + depth
-		
+		- (humanThrees * 100 + humanTwos * 10) + depth		
 
 ### improvements
-- [ ] give every field a unique id
 - [ ] modulate everything
 
 ### bugs
-- [ ] legal moves doesnt get reduced when row is full
 
 # done
 - [x] get rid of += className
@@ -35,4 +31,6 @@
 - [x] make moves, start at all zeroes
 - [x] twist functions
 - [x] write a history "player 1, player 2"-array of what moves have been made so far
-- [x] getLastMove >>	return column (0-6) or turn left or turn right  
+- [x] getLastMove >>	return column (0-6) or turn left or turn right 
+- [x] legal moves doesnt get reduced when row is full
+- [x] give every field a unique id
