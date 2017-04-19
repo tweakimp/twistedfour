@@ -1,24 +1,23 @@
 # to do
 ### game play
-- [ ]  mouse over column
+- [ ] mouse over column
 
 ### game rules
 - [ ] what happens when both players connect 4 after a twist?
 
 ### ui
-- [ ]  show whose move it is 
-- [ ]  show how much time is left
-- [ ]  add "start new game" button with time option
-- [ ]  options who plays first, what kind of players play and what ai difficulry is chosen  
+- [ ] show whose move it is 
+- [ ] show how much time is left
+- [ ] add "start new game" button with time option
+- [ ] options who plays first, what kind of players play and what ai difficulty is chosen  
 
 ### ai
-- [ ]  name
-- [ ]  functions that help the AI
-- [ ]  rate game state >> return a number between 1(player 1 wins 100%) and 2(player 2 wins 100%)  
-- [ ]  heuristic used to evaluate a game state is:
-
-		(aiFours * 100000 + aiThrees * 100 + aiTwos * 10)
-		- (humanThrees * 100 + humanTwos * 10) + depth		
+- [ ] name
+- [ ] functions that help the AI
+- [ ] rate game state >> return a number between 1 (player 1 wins 100%) and 2 (player 2 wins 100%)
+- [ ] heuristic used to evaluate a game state is:
+	(aiFours * 100000 + aiThrees * 100 + aiTwos * 10)
+	- (humanThrees * 100 + humanTwos * 10) + depth
 
 ### improvements
 - [ ] modulate everything
