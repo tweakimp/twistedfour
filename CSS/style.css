@@ -1,7 +1,13 @@
-/*csslint  order-alphabetical: false*/
+/*csslint  order-alphabetical: false, important: allow*/
 
+html {
+	background: linear-gradient(135deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%) no-repeat center center fixed;
+	background-size: cover;
+}
 
-/*csslint important: allow*/
+body {
+	background-size: cover;
+}
 
 .container {
 	position: absolute;
@@ -23,16 +29,26 @@
 }
 
 .field {
-	width: 80px;
-	height: 80px;
-	padding: 5px;
+	width: 100px;
+	height: 100px;
 	background-color: #0b4455;
-	-webkit-box-shadow: inset 0px 0px 33px 0px rgba(0, 0, 0, 0.3);
-	/* WebKit */
-	-moz-box-shadow: inset 0px 0px 33px 0px rgba(0, 0, 0, 0.3);
-	/* Firefox */
-	box-shadow: inset 0px 0px 33px 0px rgba(0, 0, 0, 0.3);
-	/* Standard */
+	-webkit-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+	border-collapse: collapse;
+}
+
+.markedField {
+	border: #dee529;
+	border-width: 3px;
+}
+
+.player1 {
+	background-color: #ef464f;
+}
+
+.player2 {
+	background-color: #1bd728;
 }
 
 .textfield {
@@ -52,26 +68,4 @@
 	color: darkred;
 	font-weight: bold;
 	font-family: monospace;
-}
-
-html {
-	background: linear-gradient(135deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%) no-repeat center center fixed;
-	background-size: cover;
-}
-
-body {
-	background-size: cover;
-}
-
-.markedField {
-	border: #dee529;
-	border-width: 3px;
-}
-
-.player1 {
-	background-color: #ef464f;
-}
-
-.player2 {
-	background-color: #1bd728;
 }
