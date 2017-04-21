@@ -28,7 +28,7 @@ function GameArea(mode, gravity) {
 			for (let j = 6; j > -1; j--) {
 				switch (this.mode) {
 					case "coordinates":
-						this.matrix[i][j] = `column ${i}<br>row ${j}`;
+						this.matrix[i][j] = "column ${i}<br>row ${j}";
 						break;
 					case "randomized": // fill with random entries
 						this.matrix[i][j] = this.fieldtoken[Math.floor(Math.random() * this.fieldtoken.length)];
@@ -237,30 +237,32 @@ function GameArea(mode, gravity) {
 		this.checkRows();
 		this.checkColumns();
 		this.checkDiagonals();
+		let statusArea = document.getElementsByClassName("statusArea")[0].innerHTML;
 
 		// the following if statement is super ugly and should not be seen by anyone who is not trying to fix it
 		if (winRow || winColumn || winDiagonal) {
 			if (winRow && !winColumn && !winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY ROW";
+				statusArea = "WINS BY ROW";
 			}
 			if (!winRow && winColumn && !winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY COLUMN";
+				statusArea = "WINS BY COLUMN";
 			}
 			if (!winRow && !winColumn && winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY DIAGONAL";
+				statusArea = "WINS BY DIAGONAL";
 			}
 			if (winRow && winColumn && !winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY ROW AND COLUMN";
+				statusArea = "WINS BY ROW AND COLUMN";
 			}
 			if (winRow && !winColumn && winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY ROW AND DIAGONAL";
+				statusArea = "WINS BY ROW AND DIAGONAL";
 			}
 			if (!winRow && winColumn && winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY COLUMN AND DIAGONAL";
+				statusArea = "WINS BY COLUMN AND DIAGONAL";
 			}
 			if (winRow && winColumn && winDiagonal) {
-				document.getElementsByClassName("statusArea")[0].innerHTML = "WINS BY ROW, COLUMN AND DIAGONAL";
+				statusArea = "WINS BY ROW, COLUMN AND DIAGONAL";
 			}
+			statusArea += (this.winner === 1) ? " - PLAYER 1" : " - PLAYER 2";
 		}
 	};
 	this.getWinner = function () {
