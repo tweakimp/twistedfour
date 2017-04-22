@@ -37,10 +37,9 @@ let fieldScore = {
 		let textbox = document.getElementsByClassName("scoreArea")[0];
 		let input = fieldScore.get(matrix);
 		textbox.innerHTML = `The current score is ${input}<br>by fieldscore calculation.`;
-
 	}
-
 };
+
 /*
 let surroundScore = {
 	get: function (matrix) {

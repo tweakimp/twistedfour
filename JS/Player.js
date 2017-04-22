@@ -34,7 +34,7 @@ function Player(id, identity) {
 
 				let currentMove = legal[i];
 				let simulatedArea = new GameArea("custom", true);
-
+				simulatedArea.fillMatrix();
 				simulatedArea.makeMove(currentMove, this.id);
 
 				let score = fieldScore.get(simulatedArea.getMatrix(), this.id);
@@ -49,7 +49,7 @@ function Player(id, identity) {
 				}
 			});
 
-			return futureMoves[0][1]; // return item from legalmoves
+			return this.id === 1 ? futureMoves[0][1] : futureMoves[futureMoves.length - 1][1];
 		}
 
 		if (this.identity == "human") {

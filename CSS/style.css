@@ -1,62 +1,78 @@
-/*csslint  order-alphabetical: false, important: allow*/
-
-html {
-	background: linear-gradient(135deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%) no-repeat center center fixed;
-	background-size: cover;
-}
-
-body {
-	background-size: cover;
-}
-
-.container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-right: -50%;
-	transform: translate(-50%, -50%)
-}
-
-.gameArea {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #0b4455;
-}
-
-.column {
-	float: left;
-}
-
-.field {
-	width: 100px;
-	height: 100px;
-	background-color: #0b4455;
-	-webkit-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
-	border-collapse: collapse;
-}
-
-.markedField {
-	border: #dee529;
-	border-width: 3px;
-}
-
-.player1 {
-	background-color: #ef464f;
-}
-
-.player2 {
-	background-color: #1bd728;
-}
-
-.statusArea,
-.scoreArea {
-	text-align: center;
-	width: 350px;
-	margin: auto;
-	color: darkred;
-	font-weight: bold;
-	font-family: monospace;
-}
+	/*csslint  order-alphabetical: false, important: allow*/
+	
+	html {
+		background: linear-gradient(135deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%) no-repeat center center fixed;
+		background-size: cover;
+	}
+	
+	body {
+		background-size: cover;
+	}
+	
+	.container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%, -50%)
+	}
+	
+	.gameArea {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #0b4455;
+	}
+	
+	.column {
+		float: left;
+	}
+	
+	.field {
+		width: 100px;
+		height: 100px;
+		background-color: #0b4455;
+		-webkit-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+		-moz-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+		box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+		border-collapse: collapse;
+	}
+	
+	.markedField {
+		border: #dee529;
+		border-width: 3px;
+	}
+	
+	.player1 {
+		background-color: #ef464f;
+	}
+	
+	.player2 {
+		background-color: #1bd728;
+	}
+	
+	.statusArea,
+	.scoreArea {
+		text-align: center;
+		width: 350px;
+		margin: auto;
+		color: darkred;
+		font-weight: bold;
+		font-family: monospace;
+	}
+	
+	fieldset > div {
+		margin: auto;
+		color: darkred;
+		font-weight: bold;
+		font-family: monospace;
+		display: inline-flex;
+	}
+	
+	fieldset {
+		border-width: 0;
+	}
+	
+	form {
+		display: inline-flex;
+	}

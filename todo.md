@@ -8,8 +8,8 @@
 ### ui
 - [ ] show whose move it is 
 - [ ] show how much time is left
-- [ ] add "start new game" button with time option
-- [ ] options who plays first, what kind of players play and what ai difficulty is chosen  
+
+- [] connect start game with start button and dropdown menus in html
 
 ### ai
 - [ ] name
@@ -23,7 +23,6 @@
 - [ ] modulate everything
 
 ### bugs
-- [ ] "simulatedArea" in Player.js:32 will always stay a matrix of zeroes.
 
 # done
 - [x] get rid of += className
@@ -31,6 +30,7 @@
 - [x] make moves, start at all zeroes
 - [x] twist functions
 - [x] write a history "player 1, player 2"-array of what moves have been made so far
-- [x] getLastMove >>	return column (0-6) or turn left or turn right 
+- [x] getLastMove >> return column (0-6) or turn left or turn right 
 - [x] legal moves doesnt get reduced when row is full
-- [x] give every field a unique id
+- [x] give every field a unique id
+- [x] add "start new game"

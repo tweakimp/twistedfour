@@ -3,9 +3,9 @@
 
 function Game(player1, player2, timelimit) {
 	this.timelimit = timelimit; // time per move
-	this.board = new GameArea("custom", true);
-	this.player1 = new Player(1, "ai");
-	this.player2 = new Player(2, "random");
+	this.board = new GameArea("customStart", true);
+	this.player1 = new Player(1, player1);
+	this.player2 = new Player(2, player2);
 
 	this.randomturn = function () {
 		let possible = this.getLegalMoves();
@@ -47,14 +47,26 @@ function Game(player1, player2, timelimit) {
 		this.nextTurn();
 	};
 
+	// start from here
 	this.customStartMatrix = [
-		[0, 0, 0, 2, 0, 0, 1],
-		[1, 2, 2, 2, 2, 2, 2],
-		[1, 2, 1, 2, 2, 2, 2],
-		[1, 2, 2, 2, 2, 2, 2],
-		[1, 2, 2, 2, 2, 2, 2],
-		[1, 2, 2, 2, 2, 2, 2],
-		[1, 2, 2, 2, 2, 2, 2],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+	];
+
+	// plan ahead from here
+	this.customMatrix = [
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0],
 	];
 
 	this.nextTurn = function () {
@@ -75,20 +87,18 @@ function Game(player1, player2, timelimit) {
 
 		// check HERE for wins
 
-		twisted.board.getWinner();
+		let possibleWinner = twisted.board.getWinner();
+
 		this.board.drawMatrix();
 
 		fieldScore.draw(this.board.matrix);
 
 		this.turnnumber++;
-		/*
-		if (this.turnnumber === 15) {
-			throw "rsdfsdfsdf";
-		}
-		*/
 
-		setTimeout(function () {
-			twisted.nextTurn();
-		}, 450);
+		if (possibleWinner === 0) {
+			setTimeout(function () {
+				twisted.nextTurn();
+			}, 450);
+		}
 	};
 }

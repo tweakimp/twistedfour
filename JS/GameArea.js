@@ -11,6 +11,11 @@ function GameArea(mode, gravity) {
         return this.matrix;
     };
 
+    this.gravity = gravity;
+    this.fieldtoken = [0, 1, 2];
+    this.mode = mode;
+    this.winner = 0;
+
     // applies the CUSTOM CODED MATRIX on the matrix the game uses, the custom matrix is resorted in a way
     // so that the columns you see here are also the columns you will see in the browser
     this.fillCustomStart = function (customMatrix) {
@@ -43,10 +48,10 @@ function GameArea(mode, gravity) {
                         this.matrix[i][j] = this.fieldtoken[Math.floor(Math.random() * this.fieldtoken.length)];
                         break;
                     case "custom":
-                        this.fillCustomMatrix(twisted.customMatrix);
+                        this.fillCustom(twisted.customMatrix);
                         break;
                     case "customStart":
-                        this.fillCustomStartMatrix(twisted.customStartMatrix);
+                        this.fillCustomStart(twisted.customStartMatrix);
                         break;
                     case "start": // normal game, leave zeros
                         break;
@@ -104,11 +109,6 @@ function GameArea(mode, gravity) {
             }
         }
     };
-
-    this.gravity = gravity;
-    this.fieldtoken = [0, 1, 2];
-    this.mode = mode;
-    this.winner = 0;
 
     /*
     this.getLegalMoves = function () {
@@ -249,30 +249,31 @@ function GameArea(mode, gravity) {
         this.checkRows();
         this.checkColumns();
         this.checkDiagonals();
-        let statusArea = document.getElementsByClassName("statusArea")[0].innerHTML;
+
+        let statusArea = document.getElementsByClassName("statusArea")[0];
 
         // the following if statement is super ugly and should not be seen by anyone who is not trying to fix it
         if (winRow || winColumn || winDiagonal) {
             if (winRow && !winColumn && !winDiagonal) {
-                statusArea = "WINS BY ROW";
+                statusArea.innerHTML = "WINS BY ROW";
             }
             if (!winRow && winColumn && !winDiagonal) {
-                statusArea = "WINS BY COLUMN";
+                statusArea.innerHTML = "WINS BY COLUMN";
             }
             if (!winRow && !winColumn && winDiagonal) {
-                statusArea = "WINS BY DIAGONAL";
+                statusArea.innerHTML = "WINS BY DIAGONAL";
             }
             if (winRow && winColumn && !winDiagonal) {
-                statusArea = "WINS BY ROW AND COLUMN";
+                statusArea.innerHTML = "WINS BY ROW AND COLUMN";
             }
             if (winRow && !winColumn && winDiagonal) {
-                statusArea = "WINS BY ROW AND DIAGONAL";
+                statusArea.innerHTML = "WINS BY ROW AND DIAGONAL";
             }
             if (!winRow && winColumn && winDiagonal) {
-                statusArea = "WINS BY COLUMN AND DIAGONAL";
+                statusArea.innerHTML = "WINS BY COLUMN AND DIAGONAL";
             }
             if (winRow && winColumn && winDiagonal) {
-                statusArea = "WINS BY ROW, COLUMN AND DIAGONAL";
+                statusArea.innerHTML = "WINS BY ROW, COLUMN AND DIAGONAL";
             }
             statusArea += (this.winner === 1) ? " - PLAYER 1" : " - PLAYER 2";
         }

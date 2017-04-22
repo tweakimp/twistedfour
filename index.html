@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<title>twistedfour</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/css/style.css">
-</head>
+	<head>
+		<title>twistedfour</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="/IMG/twistedfouricon.png">
+	</head>
 
-<body>
-	<div class="container">
-		<div class="gameArea">
+	<body>
+		<div class="container">
+			<div class="gameArea">
+			</div>
+			<div class="statusArea">Nothing happened.
+			</div>
+			<div class="scoreArea">0
+			</div>
+			<div class="interface">
+				<div class="players">
+					<fieldset>
+						<div>Player1
+							<input type="radio" name="startPlayer1" value="human" checked>Human<br>
+							<input type="radio" name="startPlayer1" value="ai">AI<br>
+							<input type="radio" name="startPlayer1" value="random">Random
+						</div>
+						<br>
+						<div>Player2
+							<input type="radio" name="startPlayer2" value="human" checked>Human<br>
+							<input type="radio" name="startPlayer2" value="ai">AI<br>
+							<input type="radio" name="startPlayer2" value="random">Random
+						</div>
+						<br>
+						<div>Time per move (in sec)
+							<input name="timelimit" type="number"><br>
+						</div>
+						<button onclick="startGame()">START</button>
+					</fieldset>
+
+				</div>
+			</div>
 		</div>
-		<div class="statusArea">Nothing happened.
-		</div>
-		<div class="scoreArea">0
-		</div>
-	</div>
-	<script src="/js/Score.js"></script>
-	<script src="/js/Player.js"></script>
-	<script src="/js/GameArea.js"></script>
-	<script src="/js/Game.js"></script>
-	<script src="/js/Main.js"></script>
-</body>
+
+		<script src="/js/Score.js"></script>
+		<script src="/js/Player.js"></script>
+		<script src="/js/GameArea.js"></script>
+		<script src="/js/Game.js"></script>
+		<script src="/js/Main.js"></script>
+	</body>
 
 </html>
