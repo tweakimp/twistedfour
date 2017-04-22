@@ -33,4 +33,4 @@
 - [x] write a history "player 1, player 2"-array of what moves have been made so far
 - [x] getLastMove >>	return column (0-6) or turn left or turn right 
 - [x] legal moves doesnt get reduced when row is full
-- [x] give every field a unique id
+- [x] give every field a unique id

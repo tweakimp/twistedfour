@@ -47,7 +47,7 @@ function Game(player1, player2, timelimit) {
 		this.nextTurn();
 	};
 
-	this.customMatrix = [
+	this.customStartMatrix = [
 		[0, 0, 0, 2, 0, 0, 1],
 		[1, 2, 2, 2, 2, 2, 2],
 		[1, 2, 1, 2, 2, 2, 2],

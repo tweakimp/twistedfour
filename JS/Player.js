@@ -1,5 +1,5 @@
 /* jshint esversion: 6, browser: true, devel: true */
-/* globals GameArea, twisted*/
+/* globals GameArea, twisted, fieldScore*/
 
 function Player(id, identity) {
 	this.name = name;
@@ -14,12 +14,18 @@ function Player(id, identity) {
 		if (this.identity == "ai") {
 
 			let futureMoves = [];
-
-			// Matrix kopieren, um Spielzuege zu simulieren
-			twisted.customMatrix = twisted.board.getMatrix()
-				.map(function (arr) {
-					return arr.slice();
-				});
+			/*
+						// Matrix kopieren, um Spielzuege zu simulieren
+						twisted.customMatrix = twisted.board.getMatrix()
+							.map(function (arr) {
+								return arr.slice();
+							});
+						*/
+			for (let i = 0; i < 7; i++) {
+				for (let j = 0; j < 7; j++) {
+					twisted.customMatrix[i][j] = twisted.board.getMatrix()[i][j];
+				}
+			}
 
 			let legal = twisted.getLegalMoves();
 			// for all legal moves, generate a new matrix
@@ -50,4 +56,5 @@ function Player(id, identity) {
 
 		}
 	};
+
 }
