@@ -1,6 +1,6 @@
 # to do
 ### game play
-- [ ] mouse over column
+
 
 ### game rules
 - [ ] what happens when both players connect 4 after a twist?
@@ -37,3 +37,4 @@
 - [x] add "start new game"
 - [x] connect start game with start button and dropdown menus in html
 - [x] highlight winning fields
+- [x] mouse over column

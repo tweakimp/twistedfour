@@ -40,29 +40,25 @@ function Player(id, identity) {
 					}
 				});
 				return this.id === 1 ? futureMoves[0][1] : futureMoves[futureMoves.length - 1][1];
-			case "human":
 
-				// array of legal moves, eg.[0,1,3,5,6]
-				let legalMoves = twisted.getLegalMoves();
+				/*human moves are now in game
+				case "human":
 
-				// initialization with -1 to check if it changes
-				let humanMove = -1;
+					// array of legal moves, eg.[0,1,3,5,6]
+					let legalMoves = twisted.getLegalMoves();
 
-				//column nodes
-				let node = document.getElementsByClassName("column");
+					// initialization with -1 to check if it changes
+					let humanMove = -1;
 
-				// my try of getting at least the first column to work
-				node[0].addEventListener("click", function () {
-					humanMove = 0;
-				});
-				/* pseudo code:
-				while(humanmove===-1){
-				wait here until one event listener fires
-				}
-				*/
-				// returns -1 every time :'(
+					//column nodes
+					let node = document.getElementsByClassName("column");
 
-				return humanMove;
+					// my try of getting at least the first column to work
+					node[0].addEventListener("click", function () {
+						humanMove = 0;
+					});
+					return humanMove;
+					*/
 
 		}
 
