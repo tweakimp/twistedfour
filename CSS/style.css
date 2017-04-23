@@ -17,7 +17,7 @@ body {
 	transform: translate(-50%, -50%)
 }
 
-.turns {
+.turn {
 	margin: auto;
 	display: block;
 	text-align: center;

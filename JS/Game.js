@@ -9,7 +9,7 @@ function Game(player1, player2, timelimit) {
 	this.timelimit = timelimit; // time per move
 	this.turnnumber = 1;
 	this.getLegalMoves = function () {
-		const allMoves = [ /*"l", "r", */ 0, 1, 2, 3, 4, 5, 6];
+		const allMoves = ["l", "r", 0, 1, 2, 3, 4, 5, 6];
 		let moves = allMoves;
 		let matrix = twisted.board.getMatrix();
 		for (let i = 0; i < 7; i++) {
@@ -83,12 +83,26 @@ function Game(player1, player2, timelimit) {
 
 			if (this.player1.identity === "human") {
 				// its a trap
-				let node = document.getElementsByClassName("column");
-				for (let i = 0; i < 7; i++) {
-					node[i].addEventListener("click", function () {
-						twisted.board.makeMove(i, 1);
-						twisted.nextTurnWait();
-					});
+				let column = document.getElementsByClassName("column");
+				let left = document.getElementsByClassName("left");
+				let right = document.getElementsByClassName("right");
+				for (let i = 0; i < 9; i++) {
+					if (i < 7) {
+						column[i].addEventListener("click", function () {
+							twisted.board.makeMove(i, 1);
+							twisted.nextTurnWait();
+						});
+					} else if (i === 7) {
+						left[0].addEventListener("click", function () {
+							twisted.board.makeMove("l", 1);
+							twisted.nextTurnWait();
+						});
+					} else {
+						right[0].addEventListener("click", function () {
+							twisted.board.makeMove("r", 1);
+							twisted.nextTurnWait();
+						});
+					}
 				}
 
 			}
@@ -108,12 +122,26 @@ function Game(player1, player2, timelimit) {
 			}
 			if (this.player2.identity === "human") {
 				// its a trap
-				let node = document.getElementsByClassName("column");
-				for (let i = 0; i < 7; i++) {
-					node[i].addEventListener("click", function () {
-						twisted.board.makeMove(i, 2);
-						twisted.nextTurnWait();
-					});
+				let column = document.getElementsByClassName("column");
+				let left = document.getElementsByClassName("left");
+				let right = document.getElementsByClassName("right");
+				for (let i = 0; i < 9; i++) {
+					if (i < 7) {
+						column[i].addEventListener("click", function () {
+							twisted.board.makeMove(i, 2);
+							twisted.nextTurnWait();
+						});
+					} else if (i === 7) {
+						left[0].addEventListener("click", function () {
+							twisted.board.makeMove("l", 2);
+							twisted.nextTurnWait();
+						});
+					} else {
+						right[0].addEventListener("click", function () {
+							twisted.board.makeMove("r", 2);
+							twisted.nextTurnWait();
+						});
+					}
 				}
 
 			}
