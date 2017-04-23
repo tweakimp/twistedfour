@@ -90,16 +90,19 @@ function Game(player1, player2, timelimit) {
 					if (i < 7) {
 						column[i].addEventListener("click", function () {
 							twisted.board.makeMove(i, 1);
+							twisted.history.push(i);
 							twisted.nextTurnWait();
 						});
 					} else if (i === 7) {
 						left[0].addEventListener("click", function () {
 							twisted.board.makeMove("l", 1);
+							twisted.history.push(i);
 							twisted.nextTurnWait();
 						});
 					} else {
 						right[0].addEventListener("click", function () {
 							twisted.board.makeMove("r", 1);
+							twisted.history.push(i);
 							twisted.nextTurnWait();
 						});
 					}
@@ -116,7 +119,6 @@ function Game(player1, player2, timelimit) {
 				// alles in betweenturn
 				this.history.push(move);
 				this.board.makeMove(move, player);
-
 				this.nextTurnWait();
 
 			}
@@ -129,16 +131,19 @@ function Game(player1, player2, timelimit) {
 					if (i < 7) {
 						column[i].addEventListener("click", function () {
 							twisted.board.makeMove(i, 2);
+							twisted.history.push(i);
 							twisted.nextTurnWait();
 						});
 					} else if (i === 7) {
 						left[0].addEventListener("click", function () {
 							twisted.board.makeMove("l", 2);
+							twisted.history.push(i);
 							twisted.nextTurnWait();
 						});
 					} else {
 						right[0].addEventListener("click", function () {
 							twisted.board.makeMove("r", 2);
+							twisted.history.push(i);
 							twisted.nextTurnWait();
 						});
 					}
