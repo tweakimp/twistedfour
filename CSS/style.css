@@ -1,111 +1,123 @@
-	/*csslint  order-alphabetical: false, important: allow*/
-	
-	html {
-		background: linear-gradient(135deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%) no-repeat center center fixed;
-		background-size: cover;
-	}
-	
-	body {
-		background-size: cover;
-	}
-	
-	.container {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-right: -50%;
-		transform: translate(-50%, -50%)
-	}
-	
-	.gameArea {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #0b4455;
-	}
-	
-	.column {
-		float: left;
-	}
-	
-	.field {
-		width: 100px;
-		height: 100px;
-		background-color: #0b4455;
-		-webkit-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
-		-moz-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
-		box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
-		border-collapse: collapse;
-	}
-	
-	@keyframes animation1 {
-		0% {
-			background-color: #ef464f;
-		}
-		50% {
-			background-color: wheat;
-		}
-		100% {
-			background-color: #ef464f;
-		}
-	}
-	
-	@keyframes animation2 {
-		0% {
-			background-color: #1bd728;
-		}
-		50% {
-			background-color: wheat;
-		}
-		100% {
-			background-color: #1bd728;
-		}
-	}
-	
-	.winField1 {
-		background-color: #f3787f;
-		animation-name: animation1;
-		animation-duration: 1s;
-		animation-iteration-count: infinite;
-	}
-	
-	.winField2 {
-		background-color: #59e262;
-		animation-name: animation2;
-		animation-duration: 1s;
-		animation-iteration-count: infinite;
-	}
-	
-	.player1 {
+/*csslint  order-alphabetical: false, important: allow*/
+
+html {
+	background: linear-gradient(135deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%) no-repeat center center fixed;
+	background-size: cover;
+}
+
+body {
+	background-size: cover;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%)
+}
+
+.turns {
+	margin: auto;
+	display: block;
+	text-align: center;
+}
+
+.left,
+.right {
+	display: inline-block;
+	margin: 0 10px 0 10px;
+	font-family: monospace;
+}
+
+.gameArea {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #0b4455;
+}
+
+.column {
+	float: left;
+}
+
+.field {
+	width: 100px;
+	height: 100px;
+	background-color: #0b4455;
+	-webkit-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 33px 0 rgba(0, 0, 0, 0.3);
+	border-collapse: collapse;
+}
+
+@keyframes animation1 {
+	0% {
 		background-color: #ef464f;
 	}
-	
-	.player2 {
+	50% {
+		background-color: wheat;
+	}
+	100% {
+		background-color: #ef464f;
+	}
+}
+
+@keyframes animation2 {
+	0% {
 		background-color: #1bd728;
 	}
-	
-	.statusArea,
-	.scoreArea {
-		text-align: center;
-		width: 350px;
-		margin: auto;
-		color: darkred;
-		font-weight: bold;
-		font-family: monospace;
+	50% {
+		background-color: wheat;
 	}
-	
-	fieldset > div {
-		margin: auto;
-		color: darkred;
-		font-weight: bold;
-		font-family: monospace;
-		display: inline-flex;
+	100% {
+		background-color: #1bd728;
 	}
-	
-	fieldset {
-		border-width: 0;
-	}
-	
-	form {
-		display: inline-flex;
-	}
+}
+
+.winField1 {
+	background-color: #f3787f;
+	animation-name: animation1;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+.winField2 {
+	background-color: #59e262;
+	animation-name: animation2;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+.player1 {
+	background-color: #ef464f;
+}
+
+.player2 {
+	background-color: #1bd728;
+}
+
+.statusArea,
+.scoreArea {
+	text-align: center;
+	width: 350px;
+	margin: auto;
+	color: darkred;
+	font-weight: bold;
+	font-family: monospace;
+}
+
+fieldset > div {
+	margin: auto;
+	font-weight: bold;
+	font-family: monospace;
+	display: inline-flex;
+}
+
+fieldset {
+	border-width: 0;
+}
+
+form {
+	display: inline-flex;
+}
