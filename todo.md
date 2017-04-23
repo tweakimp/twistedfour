@@ -24,7 +24,7 @@
 - [ ] ai next turn in one function prevent double code in game.js:76
 
 ### bugs
-- [ ] multiple tokens get placed when you place again after a turn
+- [ ] after a twist turn: it is always your move and multiple tokens get placed
 
 # done
 - [x] get rid of += className
