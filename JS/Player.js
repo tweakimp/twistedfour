@@ -9,7 +9,7 @@ function Player(id, identity) {
 	this.getMove = function () {
 		switch (this.identity) {
 			case "random":
-				let possible = this.getLegalMoves();
+				let possible = twisted.getLegalMoves();
 				let move = possible[Math.floor(Math.random() * possible.length)];
 				return move;
 			case "ai":

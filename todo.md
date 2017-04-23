@@ -10,6 +10,7 @@
 - [ ] show how much time is left
 - [ ] add restart
 
+
 ### ai
 - [ ] name
 - [ ] functions that help the AI
@@ -20,6 +21,7 @@
 ```
 ### improvements
 - [ ] modulate everything
+- [ ] ai next turn in one function prevent double code in game.js:76
 
 ### bugs
 
@@ -34,3 +36,4 @@
 - [x] give every field a unique id
 - [x] add "start new game"
 - [x] connect start game with start button and dropdown menus in html
+- [x] highlight winning fields

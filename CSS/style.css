@@ -38,9 +38,12 @@
 		border-collapse: collapse;
 	}
 	
-	.markedField {
-		border: #dee529;
-		border-width: 3px;
+	.markedField1 {
+		background-color: #f3787f;
+	}
+	
+	.markedField2 {
+		background-color: #59e262;
 	}
 	
 	.player1 {
