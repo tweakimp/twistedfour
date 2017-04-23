@@ -147,7 +147,7 @@ function GameArea(mode, gravity) {
 						for (let markSteps = 0; markSteps < currentCount; markSteps++) {
 							let markColumn = document.getElementsByClassName("column")[i - markSteps];
 							let markFields = markColumn.getElementsByClassName("field")[6 - j];
-							markFields.className = (currentToken === 1) ? "field markedField1" : "field markedField2";
+							markFields.className = (currentToken === 1) ? "field player1 winField1" : "field player2 winField2";
 						}
 					}
 				} else {
@@ -171,7 +171,7 @@ function GameArea(mode, gravity) {
 						for (let markSteps = 0; markSteps < 4; markSteps++) {
 							let markColumn = document.getElementsByClassName("column")[i];
 							let markFields = markColumn.getElementsByClassName("field")[6 - (j - markSteps)];
-							markFields.className = `field markedField${currentToken}`;
+							markFields.className = (currentToken === 1) ? "field player1 winField1" : "field player2 winField2";
 						}
 						break;
 					}
@@ -200,7 +200,7 @@ function GameArea(mode, gravity) {
 						for (let markSteps = 0; markSteps < 4; markSteps++) {
 							let markColumn = document.getElementsByClassName("column")[i + markSteps];
 							let markFields = markColumn.getElementsByClassName("field")[6 - (j + markSteps)];
-							markFields.className = "field markedField";
+							markFields.className = (currentToken === 1) ? "field player1 winField1" : "field player2 winField2";
 						}
 						break;
 					}
@@ -227,7 +227,7 @@ function GameArea(mode, gravity) {
 						for (let markSteps = 0; markSteps < 4; markSteps++) {
 							let markColumn = document.getElementsByClassName("column")[i + markSteps];
 							let markFields = markColumn.getElementsByClassName("field")[6 - (j - markSteps)];
-							markFields.className = "field markedField";
+							markFields.className = (currentToken === 1) ? "field player1 winField1" : "field player2 winField2";
 						}
 						break;
 					}

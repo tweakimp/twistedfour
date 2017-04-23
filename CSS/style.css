@@ -38,12 +38,42 @@
 		border-collapse: collapse;
 	}
 	
-	.markedField1 {
-		background-color: #f3787f;
+	@keyframes animation1 {
+		0% {
+			background-color: #ef464f;
+		}
+		50% {
+			background-color: wheat;
+		}
+		100% {
+			background-color: #ef464f;
+		}
 	}
 	
-	.markedField2 {
+	@keyframes animation2 {
+		0% {
+			background-color: #1bd728;
+		}
+		50% {
+			background-color: wheat;
+		}
+		100% {
+			background-color: #1bd728;
+		}
+	}
+	
+	.winField1 {
+		background-color: #f3787f;
+		animation-name: animation1;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+	}
+	
+	.winField2 {
 		background-color: #59e262;
+		animation-name: animation2;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
 	}
 	
 	.player1 {
