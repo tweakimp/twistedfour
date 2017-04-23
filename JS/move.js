@@ -32,9 +32,9 @@ function transpose(matrix) {
 	return result;
 }
 // Create empty matrix
-function createEmptyMatrix(len) {
+function createEmptyMatrix(length) {
 	let result = [];
-	for (let i = 0; i < len; i++) {
+	for (let i = 0; i < length; i++) {
 		result.push([]);
 	}
 	return result;

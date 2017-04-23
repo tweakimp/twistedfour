@@ -8,8 +8,7 @@
 ### ui
 - [ ] show whose move it is 
 - [ ] show how much time is left
-
-- [] connect start game with start button and dropdown menus in html
+- [ ] add restart
 
 ### ai
 - [ ] name
@@ -34,3 +33,4 @@
 - [x] legal moves doesnt get reduced when row is full
 - [x] give every field a unique id
 - [x] add "start new game"
+- [x] connect start game with start button and dropdown menus in html

@@ -7,11 +7,6 @@ function Game(player1, player2, timelimit) {
 	this.player1 = new Player(1, player1);
 	this.player2 = new Player(2, player2);
 
-	this.randomturn = function () {
-		let possible = this.getLegalMoves();
-		let move = possible[Math.floor(Math.random() * possible.length)];
-		return move;
-	};
 	this.turnnumber = 1;
 
 	this.getLegalMoves = function () {
@@ -76,12 +71,13 @@ function Game(player1, player2, timelimit) {
 
 		if (this.turnnumber % 2 === 1) {
 			move = this.player1.getMove();
-			player = 1;
+			player = 1;			
 		} else {
 			move = this.player2.getMove();
 			player = 2;
 		}
-
+		
+		// alles in betweenturn
 		this.history.push(move);
 		this.board.makeMove(move, player);
 
@@ -94,11 +90,11 @@ function Game(player1, player2, timelimit) {
 		fieldScore.draw(this.board.matrix);
 
 		this.turnnumber++;
-
 		if (possibleWinner === 0) {
 			setTimeout(function () {
 				twisted.nextTurn();
 			}, 450);
 		}
+
 	};
 }
