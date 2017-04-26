@@ -1,4 +1,4 @@
-// sdaadjshinsdfsdfsdt esversion: 6, browser: true, devel: true
+/* jshint esversion: 6, browser: true, devel: true */
 
 // help functions
 function rotateRight(matrix) {
