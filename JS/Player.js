@@ -7,11 +7,13 @@ function Player(id, identity) {
 	this.id = id;
 
 	this.getMove = function () {
+		let move = -1;
 		switch (this.identity) {
 			case "random":
 				let possible = twisted.getLegalMoves();
-				let move = possible[Math.floor(Math.random() * possible.length)];
-				return move;
+				move = possible[Math.floor(Math.random() * possible.length)];
+				twisted.afterTurn(move);
+				break;
 			case "ai":
 				let futureMoves = [];
 				for (let i = 0; i < 7; i++) {
@@ -39,26 +41,37 @@ function Player(id, identity) {
 						return (a[0] > b[0]) ? -1 : 1;
 					}
 				});
-				return this.id === 1 ? futureMoves[0][1] : futureMoves[futureMoves.length - 1][1];
+				move = (this.id === 1) ? futureMoves[0][1] : futureMoves[futureMoves.length - 1][1];
+				twisted.afterTurn(move);
+				break;
 
-				/*human moves are now in game
-				case "human":
+			case "human":
+				// its a trap
+				let column = document.getElementsByClassName("column");
+				let left = document.getElementsByClassName("left");
+				let right = document.getElementsByClassName("right");
 
-					// array of legal moves, eg.[0,1,3,5,6]
-					let legalMoves = twisted.getLegalMoves();
+				for (let i = 8; i > -1; i--) {
+					if (i === 8) {
+						right[0].addEventListener("click", function () {
+							twisted.afterTurn("r");
 
-					// initialization with -1 to check if it changes
-					let humanMove = -1;
+						});
+					} else if (i === 7) {
+						left[0].addEventListener("click", function () {
+							twisted.afterTurn("l");
 
-					//column nodes
-					let node = document.getElementsByClassName("column");
+						});
 
-					// my try of getting at least the first column to work
-					node[0].addEventListener("click", function () {
-						humanMove = 0;
-					});
-					return humanMove;
-					*/
+					} else if (i < 7) {
+						column[i].addEventListener("click", function () {
+							twisted.afterTurn(i);
+						});
+					}
+
+				}
+
+				break;
 
 		}
 

@@ -42,7 +42,7 @@ function GameArea(mode, gravity) {
 			for (let j = 6; j > -1; j--) {
 				switch (this.mode) {
 					case "coordinates":
-						this.matrix[i][j] = "column ${i}<br>row ${j}";
+						this.matrix[i][j] = `column ${i}<br>row ${j}`;
 						break;
 					case "randomized": // fill with random entries
 						this.matrix[i][j] = this.fieldtoken[Math.floor(Math.random() * this.fieldtoken.length)];
@@ -72,13 +72,8 @@ function GameArea(mode, gravity) {
 			gameArea.appendChild(column);
 			column.id = i;
 
-			/*
-			column.addEventListener("click", function () {
-				alert(`Hello! I am column #${i}`);
-			});
-			*/
-
 			for (let j = 6; j > -1; j--) {
+				
 				// create fields
 				let field = document.createElement("div");
 				field.className = "field";
@@ -255,27 +250,27 @@ function GameArea(mode, gravity) {
 		// the following if statement is super ugly and should not be seen by anyone who is not trying to fix it
 		if (winRow || winColumn || winDiagonal) {
 			if (winRow && !winColumn && !winDiagonal) {
-				statusArea.innerHTML = "WINS BY ROW";
+				statusArea.innerHTML = "WIN BY ROW";
 			}
 			if (!winRow && winColumn && !winDiagonal) {
-				statusArea.innerHTML = "WINS BY COLUMN";
+				statusArea.innerHTML = "WIN BY COLUMN";
 			}
 			if (!winRow && !winColumn && winDiagonal) {
-				statusArea.innerHTML = "WINS BY DIAGONAL";
+				statusArea.innerHTML = "WIN BY DIAGONAL";
 			}
 			if (winRow && winColumn && !winDiagonal) {
-				statusArea.innerHTML = "WINS BY ROW AND COLUMN";
+				statusArea.innerHTML = "WIN BY ROW AND COLUMN";
 			}
 			if (winRow && !winColumn && winDiagonal) {
-				statusArea.innerHTML = "WINS BY ROW AND DIAGONAL";
+				statusArea.innerHTML = "WIN BY ROW AND DIAGONAL";
 			}
 			if (!winRow && winColumn && winDiagonal) {
-				statusArea.innerHTML = "WINS BY COLUMN AND DIAGONAL";
+				statusArea.innerHTML = "WIN BY COLUMN AND DIAGONAL";
 			}
 			if (winRow && winColumn && winDiagonal) {
-				statusArea.innerHTML = "WINS BY ROW, COLUMN AND DIAGONAL";
+				statusArea.innerHTML = "WIN BY ROW, COLUMN AND DIAGONAL";
 			}
-			statusArea += (this.winner === 1) ? " - PLAYER 1" : " - PLAYER 2";
+			statusArea.innerHTML += (this.winner === 1) ? " FOR PLAYER 1" : " FOR PLAYER 2";
 		}
 	};
 	this.getWinner = function () {
@@ -288,15 +283,11 @@ function GameArea(mode, gravity) {
 	// "player" is player number
 	this.makeMove = function (move, player) {
 
-		// break if move is not allowed
-		//if (!(twisted.getLegalMoves()
-		//        .includes(move))) {
-		//    throw "Move is not allowed, chosen column is full.";
+		twisted.history.push(`Player ${player} played move ${move}.`); // writes moves to the history array
 
-		// alert("Move: " + move);
 		let test = twisted.getLegalMoves();
 		if (test.indexOf(move) === -1) {
-			throw "Move is not allowed, chosen column is full.";
+			throw `Move is not allowed, chosen column ${move} is full.`;
 
 		} else if (move == "l") {
 

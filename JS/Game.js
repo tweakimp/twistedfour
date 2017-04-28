@@ -6,7 +6,7 @@ function Game(player1, player2, timelimit) {
 	this.player1 = new Player(1, player1);
 	this.player2 = new Player(2, player2);
 	this.getCurrentPlayer = function () {
-		return (this.turnNumber % 2 === 1) ? this.player2 : this.player1;
+		return (this.turnNumber % 2 === 1) ? this.player1 : this.player2;
 	};
 	this.timelimit = timelimit; // time per move
 	this.turnNumber = 1;
@@ -37,10 +37,10 @@ function Game(player1, player2, timelimit) {
 	this.history = [];
 
 	this.start = function () {
-		twisted.board.fillMatrix();
-		twisted.board.drawMatrix();
-		fieldScore.draw(this.board.matrix);
-		this.beforeTurn();
+		twisted.board.fillMatrix(); // fill the javascript matrix as the start config says
+		twisted.board.drawMatrix(); // draws the HTML matrix
+		fieldScore.draw(this.board.matrix); // starts the fieldScore calculation
+		this.beforeTurn(); // starts the loop of turns
 	};
 
 	// start from here
@@ -54,7 +54,7 @@ function Game(player1, player2, timelimit) {
 		[0, 0, 0, 0, 0, 0, 0],
 	];
 
-	// plan ahead from here
+	// play ahead from here
 	this.customMatrix = [
 		[0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0],
@@ -66,133 +66,48 @@ function Game(player1, player2, timelimit) {
 	];
 
 	this.beforeTurn = function () {
-		let player = this.getCurrentPlayer();
+		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
 		player.getMove(); // make getMove lead to after turn
 	};
-	this.afterTurn = function () {
-		let player = this.getCurrentPlayer();
-		this.turnNumber++;
-		this.history.push([player.id, player.currentMove]);
-		this.board.makeMove(currentMove, player.id);
-		this.board.drawMatrix();
-		fieldScore.draw(this.board.matrix);
-		let possibleWinner = twisted.board.getWinner();
+	this.afterTurn = function (move) {
+		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
+		this.turnNumber++; // count turns		 
+		this.board.makeMove(move, player.id); // does the actual move
+		this.board.drawMatrix(); // draws the new board
+		fieldScore.draw(this.board.matrix); // calculates the new fieldScore
+		let possibleWinner = twisted.board.getWinner(); // checks for possible winner
 		if (possibleWinner === 0) {
 			setTimeout(function () {
 				twisted.beforeTurn();
-			}, 200);
+			}, 1000);
 		}
+		// remove event listeners if winner is found
+		/*else {
+			let column = document.getElementsByClassName("column");
+			let left = document.getElementsByClassName("left");
+			let right = document.getElementsByClassName("right");
+			for (let i = 8; i > -1; i--) {
+				if (i === 8) {
+					right[0].removeEventListener("click", function () {
+						twisted.afterTurn("r");
 
-	};
+					});
 
-	/*
-		this.nextTurn = function () {
+				} else if (i === 7) {
+					left[0].removeEventListener("click", function () {
+						twisted.afterTurn("l");
 
-			let move;
-			let player;
+					});
 
-			if (this.turnnumber % 2 === 1) {
-				move = this.player1.getMove();
-				player = 1;
+				} else if (i < 7) {
+					column[i].removeEventListener("click", function () {
+						twisted.afterTurn(i);
 
-				if (this.player1.identity !== "human") {
-
-					// alles in betweenturn
-					this.history.push(move);
-					this.board.makeMove(move, player);
-
-					this.nextTurnWait();
-				}
-
-				if (this.player1.identity === "human") {
-					// its a trap
-					let column = document.getElementsByClassName("column");
-					let left = document.getElementsByClassName("left");
-					let right = document.getElementsByClassName("right");
-					for (let i = 0; i < 9; i++) {
-						if (i < 7) {
-							column[i].addEventListener("click", function () {
-								twisted.board.makeMove(i, 1);
-								twisted.history.push(i);
-								twisted.nextTurnWait();
-							});
-						} else if (i === 7) {
-							left[0].addEventListener("click", function () {
-								twisted.board.makeMove("l", 1);
-								twisted.history.push(i);
-								twisted.nextTurnWait();
-							});
-						} else {
-							right[0].addEventListener("click", function () {
-								twisted.board.makeMove("r", 1);
-								twisted.history.push(i);
-								twisted.nextTurnWait();
-							});
-						}
-					}
-
-				}
-
-			} else if (this.turnnumber % 2 === 0) {
-				move = this.player2.getMove();
-				player = 2;
-
-				if (this.player2.identity !== "human") {
-
-					// alles in betweenturn
-					this.history.push(move);
-					this.board.makeMove(move, player);
-					this.nextTurnWait();
-
-				}
-				if (this.player2.identity === "human") {
-					// its a trap
-					let column = document.getElementsByClassName("column");
-					let left = document.getElementsByClassName("left");
-					let right = document.getElementsByClassName("right");
-					for (let i = 0; i < 9; i++) {
-						if (i < 7) {
-							column[i].addEventListener("click", function () {
-								twisted.board.makeMove(i, 2);
-								twisted.history.push(i);
-								twisted.nextTurnWait();
-							});
-						} else if (i === 7) {
-							left[0].addEventListener("click", function () {
-								twisted.board.makeMove("l", 2);
-								twisted.history.push(i);
-								twisted.nextTurnWait();
-							});
-						} else {
-							right[0].addEventListener("click", function () {
-								twisted.board.makeMove("r", 2);
-								twisted.history.push(i);
-								twisted.nextTurnWait();
-							});
-						}
-					}
-
+					});
 				}
 
 			}
-
-		};
-		*/
-	/*
-	this.nextTurnWait = function () {
-		this.board.drawMatrix();
-		let possibleWinner = twisted.board.getWinner();
-
-		fieldScore.draw(this.board.matrix);
-
-		this.turnnumber++;
-		if (possibleWinner === 0) {
-			setTimeout(function () {
-				twisted.nextTurn();
-			}, 200);
-		}
+		}*/
 
 	};
-	*/
-
 }
