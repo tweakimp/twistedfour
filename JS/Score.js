@@ -40,16 +40,14 @@ let fieldScore = {
 	}
 };
 
-/*
 let surroundScore = {
 	get: function (matrix) {
 		for (let i = 0; i < 7; i++) {
 			for (let j = 0; j < 7; j++) {
 				if (matrix[i][j] !== 0) {
-					
+
 				}
 			}
 		}
 	}
 };
-*/

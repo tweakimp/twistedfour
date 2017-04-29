@@ -1,6 +1,6 @@
 # to do
 ### game play
-
+- [ ] allow only legal moves for human player
 
 ### game rules
 - [ ] what happens when both players connect 4 after a twist?
@@ -24,7 +24,7 @@
 - [ ] ai next turn in one function prevent double code in game.js:76
 
 ### bugs
-- [ ] if you twist the board after some turns, the next moves and the history get messed up
+
 
 
 # done
@@ -40,3 +40,4 @@
 - [x] connect start game with start button and dropdown menus in html
 - [x] highlight winning fields
 - [x] mouse over column
+- [x] if you twist the board after some turns, the next moves and the history get messed up

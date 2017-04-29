@@ -49,19 +49,16 @@ function Player(id, identity) {
 				let left = document.getElementsByClassName("left");
 				let right = document.getElementsByClassName("right");
 				let column = document.getElementsByClassName("column");
-				left[0].addEventListener("click", turnL);
-				right[0].addEventListener("click", turnR);
-				column[0].addEventListener("click", turn0);
-				column[1].addEventListener("click", turn1);
-				column[2].addEventListener("click", turn2);
-				column[3].addEventListener("click", turn3);
-				column[4].addEventListener("click", turn4);
-				column[5].addEventListener("click", turn5);
-				column[6].addEventListener("click", turn6);
-
+				left[0].addEventListener("click", twisted.turnL);
+				right[0].addEventListener("click", twisted.turnR);
+				column[0].addEventListener("click", twisted.turn0);
+				column[1].addEventListener("click", twisted.turn1);
+				column[2].addEventListener("click", twisted.turn2);
+				column[3].addEventListener("click", twisted.turn3);
+				column[4].addEventListener("click", twisted.turn4);
+				column[5].addEventListener("click", twisted.turn5);
+				column[6].addEventListener("click", twisted.turn6);
 				break;
-
 		}
-
 	};
 }

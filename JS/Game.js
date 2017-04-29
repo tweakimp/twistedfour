@@ -1,16 +1,18 @@
 /* jshint esversion: 6, browser: true, devel: true */
-/* globals GameArea, Player, twisted, fieldScore*/
+/* globals GameArea, Player, twisted, fieldScore, turnL, turnR, turn0, turn1, turn2, turn3, turn4, turn5, turn6 */
 
 function Game(player1, player2, timelimit) {
 	this.board = new GameArea("customStart", true);
 	this.player1 = new Player(1, player1);
 	this.player2 = new Player(2, player2);
 	this.compMoveTime = timelimit * 200;
+	this.history = [];
+	this.timelimit = timelimit; // time per move
+	this.turnNumber = 1;
 	this.getCurrentPlayer = function () {
 		return (this.turnNumber % 2 === 1) ? this.player1 : this.player2;
 	};
-	this.timelimit = timelimit; // time per move
-	this.turnNumber = 1;
+
 	this.getLegalMoves = function () {
 		const allMoves = ["l", "r", 0, 1, 2, 3, 4, 5, 6];
 		let moves = allMoves;
@@ -19,31 +21,93 @@ function Game(player1, player2, timelimit) {
 			if (!(matrix[i].includes(0))) {
 				moves = moves.filter(item => item !== i);
 			}
+			if (moves.length === allMoves.length - 7) {
+				throw "BOARD IS FULL";
+			}
+			return moves;
 		}
-		if (moves.length === allMoves.length - 7) {
-			throw "BOARD IS FULL";
-		}
-		return moves;
 	};
-
-	this.time = 0;
-	this.countdown = function () {
-		this.time--;
-		// time limit reached, lose game
-		if (this.time === 0) {
-			if (this.whoseturn === 1) {} else {}
-		}
-
-	};
-	this.history = [];
-
 	this.start = function () {
 		twisted.board.fillMatrix(); // fill the javascript matrix as the start config says
 		twisted.board.drawMatrix(); // draws the HTML matrix
-		fieldScore.draw(this.board.matrix); // starts the fieldScore calculation
+		fieldScore.draw(this.board.matrix); // fieldScore calculation
 		this.beforeTurn(); // starts the loop of turns
 	};
+	this.beforeTurn = function () {
+		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
+		player.getMove(); // make getMove lead to after turn
+	};
+	this.afterTurn = function (move) {
+		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
 
+		// remove event listeners after human move
+		if (player.identity === "human") {
+			let left = document.getElementsByClassName("left");
+			let right = document.getElementsByClassName("right");
+			let column = document.getElementsByClassName("column");
+			left[0].removeEventListener("click", this.turnL);
+			right[0].removeEventListener("click", this.turnR);
+			column[0].removeEventListener("click", this.turn0);
+			column[1].removeEventListener("click", this.turn1);
+			column[2].removeEventListener("click", this.turn2);
+			column[3].removeEventListener("click", this.turn3);
+			column[4].removeEventListener("click", this.turn4);
+			column[5].removeEventListener("click", this.turn5);
+			column[6].removeEventListener("click", this.turn6);
+		}
+		this.turnNumber++; // count turns		 
+		this.board.makeMove(move, player.id); // does the actual move
+		this.board.drawMatrix(); // draws the new board
+		fieldScore.draw(this.board.matrix); // calculates the new fieldScore
+		let possibleWinner = twisted.board.getWinner(); // checks for possible winner
+		if (possibleWinner === 0) {
+			// timeout if player is human
+			if (this.getCurrentPlayer.id !== "human") {
+				setTimeout(function () {
+					twisted.beforeTurn();
+				}, this.compMoveTime);
+			} else {
+				twisted.beforeTurn();
+			}
+		}
+
+	};
+	// help
+	this.turnL = function () {
+		twisted.afterTurn("l");
+	};
+
+	this.turnR = function () {
+		twisted.afterTurn("r");
+	};
+
+	this.turn0 = function () {
+		twisted.afterTurn(0);
+	};
+
+	this.turn1 = function () {
+		twisted.afterTurn(1);
+	};
+
+	this.turn2 = function () {
+		twisted.afterTurn(2);
+	};
+
+	this.turn3 = function () {
+		twisted.afterTurn(3);
+	};
+
+	this.turn4 = function () {
+		twisted.afterTurn(4);
+	};
+
+	this.turn5 = function () {
+		twisted.afterTurn(5);
+	};
+
+	this.turn6 = function () {
+		twisted.afterTurn(6);
+	};
 	// start from here
 	this.customStartMatrix = [
 		[0, 0, 0, 0, 0, 0, 0],
@@ -65,67 +129,4 @@ function Game(player1, player2, timelimit) {
 		[0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0],
 	];
-
-	this.beforeTurn = function () {
-		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
-		player.getMove(); // make getMove lead to after turn
-	};
-	this.afterTurn = function (move) {
-		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
-		if (player.identity === "human") {
-			let left = document.getElementsByClassName("left");
-			let right = document.getElementsByClassName("right");
-			let column = document.getElementsByClassName("column");
-			left[0].removeEventListener("click", turnL);
-			right[0].removeEventListener("click", turnR);
-			column[0].removeEventListener("click", turn0);
-			column[1].removeEventListener("click", turn1);
-			column[2].removeEventListener("click", turn2);
-			column[3].removeEventListener("click", turn3);
-			column[4].removeEventListener("click", turn4);
-			column[5].removeEventListener("click", turn5);
-			column[6].removeEventListener("click", turn6);
-
-		}
-		this.turnNumber++; // count turns		 
-		this.board.makeMove(move, player.id); // does the actual move
-		this.board.drawMatrix(); // draws the new board
-		fieldScore.draw(this.board.matrix); // calculates the new fieldScore
-		let possibleWinner = twisted.board.getWinner(); // checks for possible winner
-		if (possibleWinner === 0) {
-			if (player.identity !== "human") {
-				setTimeout(function () {
-					twisted.beforeTurn();
-				}, this.compMoveTime);
-			} else {
-				twisted.beforeTurn();
-			}
-		} else {
-			let column = document.getElementsByClassName("column");
-			let left = document.getElementsByClassName("left");
-			let right = document.getElementsByClassName("right");
-			for (let i = 8; i > -1; i--) {
-				if (i === 8) {
-					right[0].removeEventListener("click", function () {
-						twisted.afterTurn("r");
-
-					});
-
-				} else if (i === 7) {
-					left[0].removeEventListener("click", function () {
-						twisted.afterTurn("l");
-
-					});
-
-				} else if (i < 7) {
-					column[i].removeEventListener("click", function () {
-						twisted.afterTurn(i);
-
-					});
-				}
-
-			}
-		}
-
-	};
 }

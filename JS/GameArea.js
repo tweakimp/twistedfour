@@ -36,7 +36,7 @@ function GameArea(mode, gravity) {
 			}
 		}
 	};
-	// fill the matrix with what you chose at let entries
+	// fill the matrix with what you chose at "mode"
 	this.fillMatrix = function () {
 		for (let i = 6; i > -1; i--) {
 			for (let j = 6; j > -1; j--) {
@@ -73,7 +73,7 @@ function GameArea(mode, gravity) {
 			column.id = i;
 
 			for (let j = 6; j > -1; j--) {
-				
+
 				// create fields
 				let field = document.createElement("div");
 				field.className = "field";
@@ -87,7 +87,6 @@ function GameArea(mode, gravity) {
 	};
 
 	this.applyGravity = function () {
-
 		for (let i = 0; i < 7; i++) {
 			// find zeroes and write their index to array
 			let zeroes = [];
@@ -104,13 +103,6 @@ function GameArea(mode, gravity) {
 			}
 		}
 	};
-
-	/*
-	this.getLegalMoves = function () {
-		return this.legalMoves();
-	};
-	*/
-
 	this.deleteMatrix = function () {
 		while (gameArea.firstChild) {
 			gameArea.removeChild(gameArea.firstChild);
@@ -291,12 +283,12 @@ function GameArea(mode, gravity) {
 
 		} else if (move == "l") {
 
-			this.matrix = rotateLeft(this.matrix);
+			this.matrix = this.rotateLeft(this.matrix);
 			this.applyGravity();
 
 		} else if (move == "r") {
 
-			this.matrix = rotateRight(this.matrix);
+			this.matrix = this.rotateRight(this.matrix);
 			this.applyGravity();
 
 		} else {
@@ -307,45 +299,43 @@ function GameArea(mode, gravity) {
 		}
 		return this.matrix;
 	};
-}
+	// help functions
+	this.rotateRight = function (matrix) {
+		matrix = this.transpose(matrix);
+		matrix.map(function (array) {
+			array.reverse();
+		});
+		return matrix;
+	};
 
-// HELP FUNCTION. TO BE INTEGRATED
-// help functions
-function rotateRight(matrix) {
-	matrix = transpose(matrix);
-	matrix.map(function (array) {
-		array.reverse();
-	});
-	return matrix;
-}
-
-function rotateLeft(matrix) {
-	let result = createEmptyMatrix(matrix.length);
-	matrix = transpose(matrix);
-	let counter = 0;
-	for (let i = matrix.length - 1; i >= 0; i--) {
-		result[counter] = matrix[i];
-		counter++;
-	}
-	return result;
-}
-
-function transpose(matrix) {
-	let len = matrix.length;
-	let result = createEmptyMatrix(len);
-	for (let i = 0; i < matrix.length; i++) {
-		for (let j = 0; j < matrix[i].length; j++) {
-			let temp = matrix[i][j];
-			result[j][i] = temp;
+	this.rotateLeft = function (matrix) {
+		let result = this.createEmptyMatrix(matrix.length);
+		matrix = this.transpose(matrix);
+		let counter = 0;
+		for (let i = matrix.length - 1; i >= 0; i--) {
+			result[counter] = matrix[i];
+			counter++;
 		}
-	}
-	return result;
-}
-// Create empty matrix
-function createEmptyMatrix(len) {
-	let result = [];
-	for (let i = 0; i < len; i++) {
-		result.push([]);
-	}
-	return result;
+		return result;
+	};
+
+	this.transpose = function (matrix) {
+		let len = matrix.length;
+		let result = this.createEmptyMatrix(len);
+		for (let i = 0; i < matrix.length; i++) {
+			for (let j = 0; j < matrix[i].length; j++) {
+				let temp = matrix[i][j];
+				result[j][i] = temp;
+			}
+		}
+		return result;
+	};
+	// Create empty matrix
+	this.createEmptyMatrix = function (length) {
+		let result = [];
+		for (let i = 0; i < length; i++) {
+			result.push([]);
+		}
+		return result;
+	};
 }
