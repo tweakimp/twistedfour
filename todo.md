@@ -24,7 +24,8 @@
 - [ ] ai next turn in one function prevent double code in game.js:76
 
 ### bugs
-- [ ] see game.js:70
+- [ ] if you twist the board after some turns, the next moves and the history get messed up
+
 
 # done
 - [x] get rid of += className

@@ -5,6 +5,7 @@ function Game(player1, player2, timelimit) {
 	this.board = new GameArea("customStart", true);
 	this.player1 = new Player(1, player1);
 	this.player2 = new Player(2, player2);
+	this.compMoveTime = timelimit * 200;
 	this.getCurrentPlayer = function () {
 		return (this.turnNumber % 2 === 1) ? this.player1 : this.player2;
 	};
@@ -77,12 +78,14 @@ function Game(player1, player2, timelimit) {
 		fieldScore.draw(this.board.matrix); // calculates the new fieldScore
 		let possibleWinner = twisted.board.getWinner(); // checks for possible winner
 		if (possibleWinner === 0) {
-			setTimeout(function () {
+			if (player.identity !== "human") {
+				setTimeout(function () {
+					twisted.beforeTurn();
+				}, this.compMoveTime);
+			} else {
 				twisted.beforeTurn();
-			}, 1000);
-		}
-		// remove event listeners if winner is found
-		/*else {
+			}
+		} else {
 			let column = document.getElementsByClassName("column");
 			let left = document.getElementsByClassName("left");
 			let right = document.getElementsByClassName("right");
@@ -107,7 +110,7 @@ function Game(player1, player2, timelimit) {
 				}
 
 			}
-		}*/
+		}
 
 	};
 }

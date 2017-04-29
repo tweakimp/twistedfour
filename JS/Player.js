@@ -50,7 +50,6 @@ function Player(id, identity) {
 				let column = document.getElementsByClassName("column");
 				let left = document.getElementsByClassName("left");
 				let right = document.getElementsByClassName("right");
-
 				for (let i = 8; i > -1; i--) {
 					if (i === 8) {
 						right[0].addEventListener("click", function () {
