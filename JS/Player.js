@@ -5,7 +5,6 @@ function Player(id, identity) {
 	this.name = name;
 	this.identity = identity;
 	this.id = id;
-
 	this.getMove = function () {
 		let move = -1;
 		switch (this.identity) {
@@ -46,29 +45,19 @@ function Player(id, identity) {
 				break;
 
 			case "human":
-				// its a trap
-				let column = document.getElementsByClassName("column");
+				// its a trap				
 				let left = document.getElementsByClassName("left");
 				let right = document.getElementsByClassName("right");
-				for (let i = 8; i > -1; i--) {
-					if (i === 8) {
-						right[0].addEventListener("click", function () {
-							twisted.afterTurn("r");
-
-						});
-					} else if (i === 7) {
-						left[0].addEventListener("click", function () {
-							twisted.afterTurn("l");
-
-						});
-
-					} else if (i < 7) {
-						column[i].addEventListener("click", function () {
-							twisted.afterTurn(i);
-						});
-					}
-
-				}
+				let column = document.getElementsByClassName("column");
+				left[0].addEventListener("click", turnL);
+				right[0].addEventListener("click", turnR);
+				column[0].addEventListener("click", turn0);
+				column[1].addEventListener("click", turn1);
+				column[2].addEventListener("click", turn2);
+				column[3].addEventListener("click", turn3);
+				column[4].addEventListener("click", turn4);
+				column[5].addEventListener("click", turn5);
+				column[6].addEventListener("click", turn6);
 
 				break;
 

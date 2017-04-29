@@ -72,6 +72,21 @@ function Game(player1, player2, timelimit) {
 	};
 	this.afterTurn = function (move) {
 		let player = this.getCurrentPlayer(); // sets the token for the current player based on turnNumber
+		if (player.identity === "human") {
+			let left = document.getElementsByClassName("left");
+			let right = document.getElementsByClassName("right");
+			let column = document.getElementsByClassName("column");
+			left[0].removeEventListener("click", turnL);
+			right[0].removeEventListener("click", turnR);
+			column[0].removeEventListener("click", turn0);
+			column[1].removeEventListener("click", turn1);
+			column[2].removeEventListener("click", turn2);
+			column[3].removeEventListener("click", turn3);
+			column[4].removeEventListener("click", turn4);
+			column[5].removeEventListener("click", turn5);
+			column[6].removeEventListener("click", turn6);
+
+		}
 		this.turnNumber++; // count turns		 
 		this.board.makeMove(move, player.id); // does the actual move
 		this.board.drawMatrix(); // draws the new board
