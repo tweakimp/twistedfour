@@ -8,7 +8,7 @@
 ### ui
 - [ ] show whose move it is 
 - [ ] show how much time is left
-- [ ] add restart
+
 
 
 ### ai
@@ -41,3 +41,4 @@
 - [x] highlight winning fields
 - [x] mouse over column
 - [x] if you twist the board after some turns, the next moves and the history get messed up
+- [x] add restart
