@@ -1,19 +1,14 @@
 # to do
 
-### minor imporvement
-[ ] implement for android and release as 2-player paid app 
-
 ### game play
 
 
 ### game rules
-- [ ] what happens when both players connect 4 after a twist?
+- [ ] detect draws when board is ful or both players get a line of 4 at the same time
 
 ### ui
 - [ ] show whose move it is 
 - [ ] show how much time is left
-
-
 
 ### ai
 - [ ] name
@@ -28,8 +23,6 @@
 - [ ] ai next turn in one function prevent double code in game.js:76
 
 ### bugs
-
-
 
 # done
 - [x] get rid of += className
