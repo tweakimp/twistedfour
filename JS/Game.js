@@ -13,12 +13,12 @@ function Game(player1, player2, timelimit) {
 		return (this.turnNumber % 2 === 1) ? this.player1 : this.player2;
 	};
 
-	this.getLegalMoves = function () {
+	this.getLegalMoves = function (matrix) {
 		let allMoves = [0, 1, 2, 3, 4, 5, 6, "l", "r"];
 		let moves = allMoves;
-		let matrix = twisted.board.getMatrix();
+		let legalMatrix = matrix;
 		for (let i = 0; i < 7; i++) {
-			if (!(matrix[i].includes(0))) {
+			if (!(legalMatrix[i].includes(0))) {
 				// define a function with input item to filter out all non-items
 				moves = moves.filter(item => item !== i);
 			}

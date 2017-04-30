@@ -275,7 +275,7 @@ function GameArea(mode, gravity) {
 	// "player" is player number
 	this.makeMove = function (move, player) {
 
-		let test = twisted.getLegalMoves();
+		let test = twisted.getLegalMoves(twisted.board.getMatrix());
 		if (test.indexOf(move) === -1) {
 			throw `Move is not allowed, chosen column ${move} is full.`;
 

@@ -1,4 +1,5 @@
-// jshint esversion: 6, browser: true, devel: true
+/* jshint esversion: 6, browser: true, devel: true */
+/* globals twisted */
 let fieldScore = {
 	fieldScoreMatrix: [
 		[3, 4, 5, 7, 5, 4, 3],
@@ -175,15 +176,15 @@ let winlistScore = {
 			} else if (goodcount === 4) {
 				score = score + 100000;
 			} else if (goodcount === 3) {
-				score = score + 100;
+				score = score + 1000;
 			} else if (goodcount === 2) {
 				score = score + 10;
 			} else if (goodcount === 1) {
 				score = score + 1;
 			} else if (badcount === 3) {
-				score = score - 10000;
+				score = score - 1000;
 			} else if (badcount === 2) {
-				score = score - 100;
+				score = score - 10;
 			} else if (badcount === 1) {
 				score = score - 1;
 			}
@@ -192,7 +193,7 @@ let winlistScore = {
 	},
 	draw: function (matrix) {
 		let textbox = document.getElementsByClassName("scoreArea")[0];
-		let input = winlistScore.get(twisted.board.getMatrix(), twisted.getCurrentPlayer()
+		let input = winlistScore.get(matrix, twisted.getCurrentPlayer()
 			.id);
 		textbox.innerHTML = `The current score is ${input}<br>by winlistScore calculation.`;
 	}
