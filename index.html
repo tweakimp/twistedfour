@@ -2,54 +2,54 @@
 <html>
 
 	<head>
-		<title>twistedfour</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/CSS/style.css">
-		<link rel="shortcut icon" type="image/x-icon" href="/IMG/twistedfouricon.png">
-	</head>
+    <title>twistedfour</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/IMG/twistedfouricon.png">
+</head>
 
-	<body>
-		<div class="container">
-			<div class="turn">
-				<div class="left">TURN LEFT</div>
-				<div class="right">TURN RIGHT</div>
-			</div>
-			<div class="gameArea">
-			</div>
-			<div class="statusArea">Nothing happened.
-			</div>
-			<div class="scoreArea">0
-			</div>
-			<div class="interface">
-				<div class="players">
-					<fieldset>
-						<div>Player 1
-							<input type="radio" name="startPlayer1" value="human" checked>Human<br>
-							<input type="radio" name="startPlayer1" value="ai">AI<br>
-							<input type="radio" name="startPlayer1" value="random">Random
-						</div>
-						<br>
-						<div>Player 2
-							<input type="radio" name="startPlayer2" value="human" checked>Human<br>
-							<input type="radio" name="startPlayer2" value="ai">AI<br>
-							<input type="radio" name="startPlayer2" value="random">Random
-						</div>
-						<br>
-						<div>Time per move (in sec)
-							<input name="timelimit" type="number" value="2"><br>
-						</div>
-						<button onclick="startGame()">START</button>
-					</fieldset>
+<body>
+    <div class="container">
+        <div class="turn">
+            <div class="left">TURN LEFT</div>
+            <div class="right">TURN RIGHT</div>
+        </div>
+        <div class="gameArea">
+        </div>
+        <div class="statusArea">Nothing happened.
+        </div>
+        <div class="scoreArea">0
+        </div>
+        <div class="interface">
+            <div class="players">
+                <fieldset>
+                    <div>Player 1
+                        <input type="radio" name="startPlayer1" value="human" checked>Human<br>
+                        <input type="radio" name="startPlayer1" value="ai">AI<br>
+                        <input type="radio" name="startPlayer1" value="random">Random
+                    </div>
+                    <br>
+                    <div>Player 2
+                        <input type="radio" name="startPlayer2" value="human" checked>Human<br>
+                        <input type="radio" name="startPlayer2" value="ai">AI<br>
+                        <input type="radio" name="startPlayer2" value="random">Random
+                    </div>
+                    <br>
+                    <div>Time per move (in sec)
+                        <input name="timelimit" type="number" value="2"><br>
+                    </div>
+                    <button onclick="startGame()">START</button>
+                </fieldset>
 
-				</div>
-			</div>
-		</div>
+            </div>
+        </div>
+    </div>
 
-		<script src="/js/Score.js"></script>
-		<script src="/js/Player.js"></script>
-		<script src="/js/GameArea.js"></script>
-		<script src="/js/Game.js"></script>
-		<script src="/js/Main.js"></script>
-	</body>
+    <script src="/js/Score.js"></script>
+    <script src="/js/Player.js"></script>
+    <script src="/js/GameArea.js"></script>
+    <script src="/js/Game.js"></script>
+    <script src="/js/Main.js"></script>
+</body>
 
 </html>

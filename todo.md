@@ -1,6 +1,10 @@
 # to do
+
+### minor imporvement
+[ ] implement for android and release as 2-player paid app 
+
 ### game play
-- [ ] allow only legal moves for human player
+
 
 ### game rules
 - [ ] what happens when both players connect 4 after a twist?
@@ -42,3 +46,4 @@
 - [x] mouse over column
 - [x] if you twist the board after some turns, the next moves and the history get messed up
 - [x] add restart
+- [x] allow only legal moves for human player

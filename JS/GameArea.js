@@ -275,8 +275,6 @@ function GameArea(mode, gravity) {
 	// "player" is player number
 	this.makeMove = function (move, player) {
 
-		twisted.history.push(`Player ${player} played move ${move}.`); // writes moves to the history array
-
 		let test = twisted.getLegalMoves();
 		if (test.indexOf(move) === -1) {
 			throw `Move is not allowed, chosen column ${move} is full.`;

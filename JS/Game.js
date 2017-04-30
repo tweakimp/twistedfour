@@ -1,5 +1,5 @@
 /* jshint esversion: 6, browser: true, devel: true */
-/* globals GameArea, Player, twisted, fieldScore, turnL, turnR, turn0, turn1, turn2, turn3, turn4, turn5, turn6 */
+/* globals GameArea, Player, twisted, fieldScore, winlistScore, turnL, turnR, turn0, turn1, turn2, turn3, turn4, turn5, turn6 */
 
 function Game(player1, player2, timelimit) {
 	this.board = new GameArea("customStart", true);
@@ -14,23 +14,24 @@ function Game(player1, player2, timelimit) {
 	};
 
 	this.getLegalMoves = function () {
-		const allMoves = ["l", "r", 0, 1, 2, 3, 4, 5, 6];
+		let allMoves = [0, 1, 2, 3, 4, 5, 6, "l", "r"];
 		let moves = allMoves;
 		let matrix = twisted.board.getMatrix();
 		for (let i = 0; i < 7; i++) {
 			if (!(matrix[i].includes(0))) {
+				// define a function with input item to filter out all non-items
 				moves = moves.filter(item => item !== i);
 			}
 			if (moves.length === allMoves.length - 7) {
 				throw "BOARD IS FULL";
 			}
-			return moves;
 		}
+		return moves;
 	};
 	this.start = function () {
 		twisted.board.fillMatrix(); // fill the javascript matrix as the start config says
 		twisted.board.drawMatrix(); // draws the HTML matrix
-		fieldScore.draw(this.board.matrix); // fieldScore calculation
+		winlistScore.draw(this.board.matrix); // fieldScore calculation
 		this.beforeTurn(); // starts the loop of turns
 	};
 	this.beforeTurn = function () {
@@ -57,12 +58,13 @@ function Game(player1, player2, timelimit) {
 		}
 		this.turnNumber++; // count turns		 
 		this.board.makeMove(move, player.id); // does the actual move
+		twisted.history.push(`Player ${player.id} played move ${move}.`); // writes moves to the history array
 		this.board.drawMatrix(); // draws the new board
-		fieldScore.draw(this.board.matrix); // calculates the new fieldScore
+		winlistScore.draw(this.board.matrix); // calculates the new fieldScore
 		let possibleWinner = twisted.board.getWinner(); // checks for possible winner
 		if (possibleWinner === 0) {
 			// timeout if player is human
-			if (this.getCurrentPlayer.id !== "human") {
+			if (this.getCurrentPlayer.identity !== "human") {
 				setTimeout(function () {
 					twisted.beforeTurn();
 				}, this.compMoveTime);
