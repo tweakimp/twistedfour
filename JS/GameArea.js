@@ -86,20 +86,20 @@ function GameArea(mode, gravity) {
 		}
 	};
 
-	this.applyGravity = function () {
+	this.applyGravity = function (matrix) {
 		for (let i = 0; i < 7; i++) {
 			// find zeroes and write their index to array
 			let zeroes = [];
 			for (let j = 0; j < 7; j++) {
-				if (this.matrix[i][j] === 0) {
+				if (matrix[i][j] === 0) {
 					zeroes.push(j);
 				}
 			}
 			// splice zeroes from columns and push them to the end
 			for (let z = 0; z < zeroes.length; z++) {
 				// zeroes[z] needs -z so the focus stays on the right array item. saved indices need to be adjusted beucase we splice while reading them.
-				this.matrix[i].splice(zeroes[z] - z, 1);
-				this.matrix[i].push(0);
+				matrix[i].splice(zeroes[z] - z, 1);
+				matrix[i].push(0);
 			}
 		}
 	};
@@ -282,18 +282,17 @@ function GameArea(mode, gravity) {
 		} else if (move == "l") {
 
 			this.matrix = this.rotateLeft(this.matrix);
-			this.applyGravity();
+			this.applyGravity(this.matrix);
 
 		} else if (move == "r") {
 
 			this.matrix = this.rotateRight(this.matrix);
-			this.applyGravity();
+			this.applyGravity(this.matrix);
 
 		} else {
 			// put token into column
 			let targetField = this.matrix[move].indexOf(0);
 			this.matrix[move].splice(targetField, 1, player);
-			this.applyGravity();
 		}
 		return this.matrix;
 	};
@@ -318,8 +317,7 @@ function GameArea(mode, gravity) {
 	};
 
 	this.transpose = function (matrix) {
-		let len = matrix.length;
-		let result = this.createEmptyMatrix(len);
+		let result = this.createEmptyMatrix(matrix.length);
 		for (let i = 0; i < matrix.length; i++) {
 			for (let j = 0; j < matrix[i].length; j++) {
 				let temp = matrix[i][j];
