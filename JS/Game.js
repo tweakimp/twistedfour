@@ -31,6 +31,7 @@ function Game(player1, player2, timelimit) {
 	this.start = function () {
 		twisted.board.fillMatrix(); // fill the javascript matrix as the start config says
 		twisted.board.drawMatrix(); // draws the HTML matrix
+		document.getElementsByClassName("statusArea")[0].innerHTML = "Game started!";
 		winlistScore.draw(this.board.matrix); // fieldScore calculation
 		this.beforeTurn(); // starts the loop of turns
 	};
