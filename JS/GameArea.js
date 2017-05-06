@@ -1,4 +1,3 @@
-/* jshint esversion: 6, browser: true, devel: true */
 /* globals twisted*/
 
 function GameArea(mode, gravity) {
