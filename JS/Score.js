@@ -1,6 +1,6 @@
 /* jshint esversion: 6, browser: true, devel: true */
 /* globals twisted */
-let fieldScore = {
+var fieldScore = {
 	fieldScoreMatrix: [
 		[3, 4, 5, 7, 5, 4, 3],
 		[4, 6, 8, 10, 8, 6, 4],
@@ -40,7 +40,7 @@ let fieldScore = {
 	}
 };
 
-let winlistScore = {
+var winlistScore = {
 	create: function () {
 		let winlist = [];
 		for (let i = 0; i < 7; i++) {
