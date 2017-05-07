@@ -13,7 +13,7 @@ function Game(player1, player2, timelimit) {
 	};
 
 	this.getLegalMoves = function (matrix) {
-		let allMoves = [0, 1, 2, 3, 4, 5, 6, "l", "r"];
+		let allMoves = [0, 1, 2, 3, 4, 5, 6 /*, "l", "r"*/ ];
 		let moves = allMoves;
 		let legalMatrix = matrix;
 		for (let i = 0; i < 7; i++) {

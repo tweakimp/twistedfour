@@ -14,8 +14,9 @@ function Player(id, identity) {
 				twisted.afterTurn(move);
 				break;
 			case "ai":
-				deepWinList(twisted.board.matrix, this.id, 2);
+				deepWinList(twisted.board.matrix, this.id, 1);
 				//aiMethodsMove(this.id);
+				break;
 			case "human":
 				legal = twisted.getLegalMoves(twisted.board.matrix);
 				if (legal.includes("l")) {
