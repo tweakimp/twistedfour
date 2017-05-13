@@ -1,4 +1,5 @@
-var winlist = [
+/*exported WINLIST*/
+const WINLIST = [
 	[
 		[0, 0],
 		[0, 1],

@@ -1,4 +1,5 @@
-/* globals twisted*/
+/* globals twisted */
+/* exported GameArea */
 
 function GameArea(mode, gravity) {
 	let gameArea = document.getElementsByClassName("gameArea")[0];
@@ -278,12 +279,12 @@ function GameArea(mode, gravity) {
 		if (test.indexOf(move) === -1) {
 			throw `Move is not allowed, chosen column ${move} is full.`;
 
-		} else if (move == "l") {
+		} else if (move === "l") {
 
 			this.matrix = this.rotateLeft(this.matrix);
 			this.applyGravity(this.matrix);
 
-		} else if (move == "r") {
+		} else if (move === "r") {
 
 			this.matrix = this.rotateRight(this.matrix);
 			this.applyGravity(this.matrix);

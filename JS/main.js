@@ -1,5 +1,5 @@
-/* jshint esversion: 6, browser: true, devel: true */
 /* globals Game, document */
+/* exported startGame */
 
 /*
 create 7x7 matrix, fill with x, apply gravity?
@@ -12,7 +12,6 @@ switch to "coordinates", "randomized", "custom", "start"
 
 let player1;
 let player2;
-let timelimit;
 let twisted;
 
 function startGame() {
