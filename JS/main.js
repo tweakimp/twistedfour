@@ -19,7 +19,7 @@ function startGame() {
 	let checkPlayer2 = document.getElementsByName("startPlayer2");
 	let timelimit = document.getElementsByName("timelimit")[0].value;
 
-	for (let i = 0; i < 3; i++) {
+	for (let i = 0; i < 4; i++) {
 		if (checkPlayer1[i].checked === true) {
 			player1 = checkPlayer1[i].value;
 		}

@@ -1,7 +1,7 @@
-/* globals GameArea, Player, twisted, fieldScore, winlistScore*/
-
+/* globals GameArea, Player, twisted, winlistScore*/
+/* exported Game */
 function Game(player1, player2, timelimit) {
-	this.board = new GameArea("start", true);
+	this.board = new GameArea("customStart", true);
 	this.player1 = new Player(1, player1);
 	this.player2 = new Player(2, player2);
 	this.compMoveTime = timelimit * 200;
@@ -13,7 +13,7 @@ function Game(player1, player2, timelimit) {
 	};
 
 	this.getLegalMoves = function (matrix) {
-		let allMoves = [0, 1, 2, 3, 4, 5, 6, "l", "r"];
+		let allMoves = [0, 1, 2, 3, 4, 5, 6 /*, "l", "r"*/ ];
 		let moves = allMoves;
 		let legalMatrix = matrix;
 		for (let i = 0; i < 7; i++) {
@@ -113,13 +113,13 @@ function Game(player1, player2, timelimit) {
 	};
 	// start from here
 	this.customStartMatrix = [
-		[0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 2, 0, 0, 0],
-		[0, 0, 0, 1, 0, 0, 0],
-		[0, 0, 0, 2, 0, 0, 0],
-		[0, 0, 2, 1, 1, 0, 0],
+		[2, 2, 1, 0, 0, 0, 0],
+		[2, 2, 1, 2, 1, 2, 2],
+		[2, 2, 1, 1, 2, 1, 2],
+		[1, 1, 2, 2, 1, 1, 1],
+		[2, 2, 1, 1, 2, 2, 2],
+		[1, 1, 2, 2, 2, 1, 2],
+		[2, 1, 2, 1, 1, 2, 2],
 	];
 
 	// play ahead from here

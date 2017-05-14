@@ -4,7 +4,7 @@
 
 
 ### game rules
-- [ ] detect draws when board is ful or both players get a line of 4 at the same time
+- [ ] detect draws when board is full or both players get a line of four tokens at the same time
 
 ### ui
 - [ ] show whose move it is 
@@ -14,13 +14,9 @@
 - [ ] name
 - [ ] functions that help the AI
 - [ ] rate game state >> return a number between 1 (player 1 wins 100%) and 2 (player 2 wins 100%)
-- [ ] heuristic used to evaluate a game state is:
-```
-	(aiFours * 100000 + aiThrees * 100 + aiTwos * 10) -	(humanThrees * 100 + humanTwos * 10) + depth
-```
+
 ### improvements
 - [ ] modulate everything
-- [ ] ai next turn in one function prevent double code in game.js:76
 
 ### bugs
 
@@ -40,3 +36,4 @@
 - [x] if you twist the board after some turns, the next moves and the history get messed up
 - [x] add restart
 - [x] allow only legal moves for human player
+- [x] apply heuristic to rate a game state

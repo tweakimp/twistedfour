@@ -1,4 +1,4 @@
-/* globals twisted, aiMethodsMove */
+/* globals twisted, singleMove, deepMove */
 /* exported Player */
 function Player(id, identity) {
 	this.name = name;
@@ -14,8 +14,14 @@ function Player(id, identity) {
 				twisted.afterTurn(move);
 				break;
 			case "ai":
-				// deepWinList(twisted.board.matrix, this.id, 1);
-				aiMethodsMove(this.id);
+				singleMove(this.id);
+				break;
+			case "deepAi":
+				let depth = 4;
+				let timeStopBefore = performance.now();
+				deepMove(this.id, depth);
+				let timeStopAfter = performance.now();
+				console.log("Calculation of deepMove  with depth " + depth + " took " + (timeStopAfter - timeStopBefore) + " milliseconds.");
 				break;
 			case "human":
 				legal = twisted.getLegalMoves(twisted.board.matrix);
