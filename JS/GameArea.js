@@ -274,21 +274,36 @@ function GameArea(mode, gravity) {
 	// move = "l" for left turn, move = [0,...,6] for the 7 columns,move = "r" for right turn
 	// "player" is player number
 	this.makeMove = function (move, player) {
-
 		let test = twisted.getLegalMoves(twisted.board.getMatrix());
 		if (test.indexOf(move) === -1) {
 			throw `Move is not allowed, chosen column ${move} is full.`;
-
-		} else if (move === "l") {
-
+		} else if (move === "L") {
 			this.matrix = this.rotateLeft(this.matrix);
 			this.applyGravity(this.matrix);
-
-		} else if (move === "r") {
-
+		} else if (move === "R") {
 			this.matrix = this.rotateRight(this.matrix);
 			this.applyGravity(this.matrix);
+		} else {
+			// put token into column
+			let targetField = this.matrix[move].indexOf(0);
+			this.matrix[move].splice(targetField, 1, player);
+		}
+		return this.matrix;
+	};
 
+	// move = "l" for left turn, move = [0,...,6] for the 7 columns,move = "r" for right turn
+	// "player" is player number
+	this.makePreMove = function (move, player) {
+		/*let test = twisted.getLegalMoves(twisted.customMatrix);
+		if (test.indexOf(move) === -1) {
+			throw `Move is not allowed, chosen column ${move} is full.`;
+		} else */
+		if (move === "L") {
+			this.matrix = this.rotateLeft(this.matrix);
+			this.applyGravity(this.matrix);
+		} else if (move === "R") {
+			this.matrix = this.rotateRight(this.matrix);
+			this.applyGravity(this.matrix);
 		} else {
 			// put token into column
 			let targetField = this.matrix[move].indexOf(0);

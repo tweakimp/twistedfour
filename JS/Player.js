@@ -17,7 +17,7 @@ function Player(id, identity) {
 				singleMove(this.id);
 				break;
 			case "deepAi":
-				let depth = 4;
+				let depth = 3;
 				let timeStopBefore = performance.now();
 				deepMove(this.id, depth);
 				let timeStopAfter = performance.now();
@@ -25,11 +25,11 @@ function Player(id, identity) {
 				break;
 			case "human":
 				legal = twisted.getLegalMoves(twisted.board.matrix);
-				if (legal.includes("l")) {
+				if (legal.includes("L")) {
 					let left = document.getElementsByClassName("left");
 					left[0].addEventListener("click", twisted.turnL);
 				}
-				if (legal.includes("r")) {
+				if (legal.includes("R")) {
 					let right = document.getElementsByClassName("right");
 					right[0].addEventListener("click", twisted.turnR);
 				}
