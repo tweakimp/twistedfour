@@ -15,8 +15,12 @@ function deepMove(playerid, depth) {
 	}
 	//console.log("currentMatrix");
 	//logMatrix(currentMatrix);
-	let boardList = [[currentMatrix]];
-	let moveList = [[""]];
+	let boardList = [
+        [currentMatrix]
+    ];
+	let moveList = [
+        [""]
+    ];
 
 	let layer = 0;
 	let legalMoves = [];
@@ -74,7 +78,6 @@ function deepMove(playerid, depth) {
 		return simulatedArea.matrix;
 	}
 
-
 	function calcBestMove(boardList, moveList, id) {
 		let lastLayer = boardList.length - 1;
 		let scoreList = [];
@@ -86,21 +89,37 @@ function deepMove(playerid, depth) {
 		console.log(scoreList);
 		let max = scoreList[0];
 		let index = 0;
+		let maxcounter = 0;
+		let maxList = [];
+
+		// choose maximum score value, log i to keep track of it
+
 		for (let i = 0; i < scoreList.length; i++) {
-			if (id === 1) {
-				if (max > scoreList[i]) {
-					max = scoreList[i];
-					index = i;
+
+			if (max <= scoreList[i]) {
+				if (max === scoreList[i]) {
+					maxcounter++;
+					maxList.push(i);
+				} else {
+					maxcounter = 0;
+					maxList = [];
+					maxList.push(i);
 				}
-			} else {
-				if (max < scoreList[i]) {
-					max = scoreList[i];
-					index = i;
-				}
+				max = scoreList[i];
+				index = i;
 			}
 		}
-		let bestMoveSequence = moveList[moveList.length - 1][index];
+
+		// finde mittleren indexwert
+		console.log(maxList);
+
+		var targetIndex = maxList[Math.floor(maxList.length / 2)];
+
+		console.log("max score, max counter and targetIndex");
+		console.log(max, maxcounter, targetIndex);
+		let bestMoveSequence = moveList[moveList.length - 1][targetIndex];
 		let bestMove = bestMoveSequence.charAt(0);
+
 		if (!(bestMove === "L") && !(bestMove === "R")) {
 			bestMove = Number(bestMove);
 		}
